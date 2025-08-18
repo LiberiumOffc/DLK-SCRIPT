@@ -1,1 +1,701 @@
---[[ v1.0.0 https://wearedevs.net/obfuscator ]] return(function(...)local U={"\066\078\072\076\099\111\089\118\112\072\089\098\083\082\119\117","\111\066\121\056\076\085\088\043\054\075\072\112\066\080\079\100\101\116\061\061","\121\104\088\105\054\048\087\117","\097\048\088\117\121\048\097\043\073\120\119\072\083\048\097\102\083\048\097\108\073\112\061\061","\083\122\088\119\083\078\067\081\057\111\054\066\055\108\056\102\065\104\073\061";"\101\048\097\105","\101\118\073\061";"\111\122\088\048\054\104\117\097\111\122\108\050\112\082\097\066";"\083\111\056\100\057\111\065\070","\057\085\087\105\057\085\088\081";"\121\104\097\117\101\082\054\072";"\078\075\087\089\101\104\119\072\110\116\061\061","\083\048\088\086\101\048\066\061","\054\085\075\069\083\048\065\107";"\101\111\088\081\055\116\061\061","\078\075\087\080\057\100\061\061";"\121\104\075\089\054\066\117\114\122\090\067\056\101\048\089\079\121\118\108\061";"\066\090\084\072\079\104\089\075\055\108\072\090\101\120\075\076";"\054\085\088\117\054\112\061\061","\054\078\084\043\101\082\073\061";"\083\066\120\043\119\081\087\065\099\120\075\113\083\066\084\107\066\116\061\061";"\057\085\069\069\121\067\061\061","\122\066\054\066\112\097\083\050\055\088\088\071\101\097\073\061","\076\106\119\081\121\120\083\072\083\116\061\061";"\101\120\121\050\079\082\066\050\101\075\097\113\076\078\088\076\066\067\061\061";"\121\048\065\069\101\048\100\061";"\055\082\084\108\079\080\054\056\099\048\054\097\083\120\072\119\054\100\061\061","\083\048\087\105\083\111\075\086\054\078\073\061","\121\104\056\070\110\078\083\070\055\085\069\086\079\072\053\048\057\067\061\061";"","\099\067\061\061","\101\048\087\069\054\106\065\081\121\104\072\105\054\100\061\061","\121\085\097\081\101\111\097\081\057\078\119\069\057\104\050\072";"\055\108\117\055\101\088\107\043\122\118\053\068","\057\111\088\068\057\111\120\090\079\120\065\068\055\081\056\054","\054\104\050\047\101\082\073\061","\101\118\120\061";"\121\082\119\043\055\111\056\080";"\078\075\087\098\054\111\074\061","\099\086\067\072\054\049\107\089\099\067\061\061";"\057\080\072\081\054\112\061\061","\055\118\054\105\099\120\088\107\111\088\069\098\065\085\065\100";"\119\066\056\122\054\104\103\090\083\081\054\050\054\048\054\075\066\116\061\061","\078\075\087\117\054\078\119\069\083\048\088\086\101\048\066\061";"\048\073\109\055\090\047\072\112\057\068\110\055\121\086\106\085\072\105\112\114\121\111\098\106\079\111\082\097\047\100\087\120\078\106\053\104\099\065\104\113\066\120\043\102\112\121\065\121\099\049\073\117\065\105\083\118\090\050\101\116\118\047\048\120\118\120\065\106\084\051\074\061";"\083\048\087\090\083\106\084\089\101\104\121\061";"\054\082\065\075\057\067\061\061"}for H,D in ipairs({{-968724-(-968725),160567-160520};{-267093+267094,-516119-(-516157)};{-917255-(-917294),-106508+106555}})do while D[-987947+987948]<D[-454353+454355]do U[D[463490+-463489]],U[D[295357+-295355]],D[214256+-214255],D[726120-726118]=U[D[171594-171592]],U[D[-399029-(-399030)]],D[391508-391507]+(-440206-(-440207)),D[617224-617222]-(1025869-1025868)end end local function H(H)return U[H+(152084-139036)]end do local H=string.sub local D=table.concat local y=string.char local R=math.floor local k={["\050"]=830955-830906;L=-175543+175561,I=-202676-(-202684);r=-804539-(-804581);g=370248-370188,V=882176+-882142,G=481518+-481507,N=-685514-(-685537);n=822594-822564,W=492561+-492500,e=990282+-990255,Z=-913041+913092,T=1021390-1021381,d=279070-279022,m=-698837+698896,y=-790150+790178;t=500217+-500217;["\056"]=362672+-362615,F=244199-244156,["\055"]=1034002-1033976,i=-640346+640392;["\049"]=804561+-804559;h=-831727+831765;E=37889-37856,j=-39393+39400,["\052"]=446624+-446593;B=-100475+100495;f=147517+-147482,z=-845752+845771,["\043"]=109246+-109196;O=-1010136-(-1010148);["\051"]=346648-346638,D=-336264+336322;A=964298-964285;J=-83246+83302;["\048"]=-241393-(-241399),s=952710+-952648;["\054"]=-301013-(-301038),q=-598829+598844,S=-139614-(-139643),M=296362+-296299,["\057"]=-64435-(-64459),a=125913-125892,l=302890+-302854,Q=-628732+628784,p=-613728+613744,C=291442+-291410;K=-194333-(-194386),u=-1024773-(-1024818);x=-266022-(-266026);R=1012489-1012434,X=869+-864,U=-157556-(-157610),c=-357550+357564,b=125109-125065;v=509105-509102;Y=-374795-(-374836);H=793686+-793649,["\047"]=-495537-(-495584);o=-807610+807632;k=191530+-191490;["\053"]=1019618+-1019617;P=-117200+117239;w=122924-122907}local x=type local K=U local l=string.len local Y=table.insert for U=-934505-(-934506),#K,-165794-(-165795)do local S=K[U]if x(S)=="\115\116\114\105\110\103"then local x=l(S)local j={}local p=858724+-858723 local W=-248792+248792 local Q=-109404+109404 while p<=x do local U=H(S,p,p)local D=k[U]if D then W=W+D*(338078+-338014)^((-151733-(-151736))-Q)Q=Q+(-627848+627849)if Q==1000226+-1000222 then Q=-945746+945746 local U=R(W/(-304900-(-370436)))local H=R((W%(-344353-(-409889)))/(-443379+443635))local D=W%(84850-84594)Y(j,y(U,H,D))W=953798+-953798 end elseif U=="\061"then Y(j,y(R(W/(800294-734758))))if p>=x or H(S,p+(430006+-430005),p+(-163788-(-163789)))~="\061"then Y(j,y(R((W%(-409204-(-474740)))/(610257-610001))))end break end p=p+(-634591-(-634592))end K[U]=D(j)end end end return(function(U,y,R,k,x,K,l,S,Q,p,D,w,G,b,J,W,a,M,u,j,Y)w,S,b,p,M,j,J,Q,u,G,Y,W,D,a=function(U,H)local y=W(H)local R=function(R,k,x)return D(U,{R;k;x},H,y)end return R end,{},function(U,H)local y=W(H)local R=function(...)return D(U,{...},H,y)end return R end,-168458-(-168458),function(U,H)local y=W(H)local R=function(R,k,x,K)return D(U,{R;k;x,K},H,y)end return R end,function()p=(110786-110785)+p S[p]=-236398+236399 return p end,function(U,H)local y=W(H)local R=function(R,k,x,K,l,Y,S)return D(U,{R;k,x,K;l;Y;S},H,y)end return R end,function(U)local H,D=-322763+322764,U[-274910+274911]while D do S[D],H=S[D]-(150993-150992),(347729-347728)+H if 196959+-196959==S[D]then S[D],Y[D]=nil,nil end D=U[H]end end,function(U,H)local y=W(H)local R=function()return D(U,{},H,y)end return R end,function(U)S[U]=S[U]-(292958-292957)if S[U]==-842958+842958 then S[U],Y[U]=nil,nil end end,{},function(U)for H=949644+-949643,#U,514774+-514773 do S[U[H]]=(711139+-711138)+S[U[H]]end if R then local D=R(true)local y=x(D)y[H(-448100-(-435055))],y[H(-460832-(-447791))],y[H(-196556+183538)]=U,Q,function()return 2019036-312753 end return D else return k({},{[H(675059+-688100)]=Q,[H(-1033185+1020140)]=U;[H(520772-533790)]=function()return 1308510-(-397773)end})end end,function(D,R,k,x)local C,Q,s,O,Z,f,X,E,c,I,p,L,P,N,W,B,l,S,g,o,F,m,T,V,v,d,r,A,h,t,b,i,e,q while D do if D<992162+7823358 then if D<976703+3873393 then if D<2900762-306534 then if D<2707956-840715 then if D<-794738+2299864 then if D<735377+560154 then if D<591506-58344 then l=H(1001760+-1014797)S=H(516912-529918)D=U[l]l=D(S)l={}D=U[H(342527+-355559)]else p=Y[k[345784-345781]]W=173190+-173189 S=p~=W D=S and 1979045-(-613544)or 12610652-(-776477)end else q=-169366+169366 F=#V v=F==q D=v and 14344780-836039 or-915620+12951039 end else if D<912265+744458 then T=Y[p]D=T and-805253+7236152 or 447671+1341829 l=T else D=657260+2208999 Y[p]=l end end else if D<-474697+2539528 then if D<976036+1006926 then D={}Y[k[888420+-888418]]=D D=12573113-608247 b=35184371216185-(-872647)l=Y[k[632559-632556]]Q=l l=p%b t=H(-483917-(-470898))r=318035-317780 Y[k[-542355+542359]]=l I=p%r r=-864357+864359 b=I+r Y[k[677199+-677194]]=b r=U[t]t=H(471055+-484059)I=r[t]r=I(S)I=H(-599209-(-586182))m=-838519+838520 Z=r W[p]=I t=-943725+943726 I=937445-937311 B=m m=597862-597862 i=B<m m=t-B else D=true D=D and 810202+3584878 or 6103499-675971 end else if D<2464593-(-107407)then r=nil Q=nil D=6521750-862546 I=nil else W=-812326+812358 p=Y[k[-324175+324178]]B=818585+-818572 Z=-879991-(-879993)S=p%W Q=Y[k[583386+-583382]]r=Y[k[138802+-138800]]v=Y[k[19497-19494]]V=v-S v=-659736-(-659768)i=V/v m=B-i t=Z^m I=r/t b=Q(I)Q=4295530026-562730 W=b%Q b=-38836-(-38838)Q=b^S t=-1001718-(-1001719)p=W/Q Q=Y[k[-252502+252506]]r=p%t t=4295706502-739206 I=r*t b=Q(I)Q=Y[k[-615359+615363]]I=Q(p)W=b+I b=497175+-431639 Q=W%b r=-979879+1045415 Z=473415-473159 B=391962+-391706 I=W-Q b=I/r r=-593933+594189 I=Q%r D=10555154-(-507665)t=Q-I r=t/Z Z=417778+-417522 t=b%Z Q=nil m=b-t Z=m/B p=nil S=nil W=nil m={I;r,t,Z}r=nil b=nil Y[k[662554+-662553]]=m I=nil t=nil Z=nil end end end else if D<149261+3533983 then if D<2472370-(-891540)then if D<-226465+3462516 then if D<2235528-(-597622)then g=999899+-999897 h=E[g]g=Y[C]D=15084679-(-517287)f=h==g T=f else E=nil X=G(X)P=G(P)s=G(s)C=G(C)D=15258180-413574 c=G(c)L=G(L)end else D=Y[r]A=-768978+768979 q=-94355+94361 d=D(A,q)D=H(-486080+473077)q=H(479079+-492082)U[D]=d A=U[q]q=873590-873588 D=A>q D=D and-393839+4874897 or 14487518-270914 end else if D<3237921-(-328862)then s=j()Y[s]=N X=H(-121722-(-108680))P=-703008+703108 l=U[X]X=H(-355771-(-342764))D=l[X]X=710021-710020 O=-511797-(-511797)l=D(X,P)f=H(930683+-943694)X=j()C=-813708-(-813709)Y[X]=l P=41020-41020 D=Y[r]L=134125+-133870 l=D(P,L)L=107892-107891 P=j()E=-23108-(-23110)Y[P]=l D=Y[r]c=Y[X]l=D(L,c)L=j()Y[L]=l l=Y[r]e=197875-187875 c=l(C,E)l=553550+-553549 E=H(420487-433513)D=c==l c=j()l=H(362107+-375124)Y[c]=D o=U[f]h=Y[r]g={h(O,e)}f=o(y(g))o=H(755957+-768983)D=H(-439380+426370)T=f..o D=v[D]C=E..T D=D(v,l,C)C=j()Y[C]=D E=H(596770+-609801)l=U[E]T=u(16462852-(-175525),{r,s;m,W,p;F,c,C,X;L,P;Z})E={l(T)}D={y(E)}E=D D=Y[c]D=D and-1020442+2529643 or-673368+10529490 else D=Y[k[-1000351+1000352]]W=D p=R[694548+-694546]S=R[-923840-(-923841)]D=W[p]D=D and 15031888-793499 or 2597322-717182 end end else if D<-203399+4624275 then if D<3770676-(-576009)then W=-312289+312289 S=H(195861-208898)D=U[S]p=Y[k[308837+-308829]]S=D(p,W)D=-674915+10584575 else D=6888972-(-580246)end else if D<-863435+5398447 then A=H(-753773-(-740762))s=H(549229+-562249)D=U[A]q=U[s]A=D(q)D=H(-883522-(-870519))U[D]=A D=311787+13238300 else v=F D=7645841-477458 P=v V[v]=P v=nil end end end end else if D<7305347-114917 then if D<6012225-(-118714)then if D<5243828-(-181389)then if D<789201+4314346 then if D<4375096-(-517717)then D=true D=5292518-(-135010)else l={}D=U[H(844579-857593)]end else W=-643066+3267534 p=H(-570897-(-557889))S=p^W l=12992954-461213 D=l-S l=H(-848272-(-835249))S=D D=l/S l={D}D=U[H(767877-780882)]end else if D<635131+4846596 then D=a(-887490+11640398,{Q})d={D()}l={y(d)}D=U[H(-73053+60051)]else l={p}D=U[H(831896+-844911)]end end else if D<6538258-13995 then if D<5759659-(-686966)then o=D g=1020086-1020085 h=E[g]g=false f=h==g T=f D=f and 2891433-290328 or 15611613-9647 else Y[p]=T g=Y[L]O=-755028+755029 h=g+O f=E[h]o=B+f f=-605510-(-605766)D=o%f B=D h=Y[P]f=i+h h=366546+-366290 o=f%h i=o D=2359641-(-506618)end else if D<6439919-(-679800)then D=U[H(-759819+746791)]l={}else P=not X F=F+s v=F<=q v=P and v P=F>=q P=X and P v=P or v P=80410+4524564 D=v and P v=9361099-(-488334)D=D or v end end end else if D<-1007466+8597475 then if D<6645546-(-662907)then if D<6506710-(-780296)then if D<8212663-938098 then W=W+b r=not I p=W<=Q p=r and p r=W>=Q r=I and r p=r or p r=1047820+15236918 D=p and r p=-225290+7508065 D=D or p else D=Y[k[939336+-939326]]p=Y[k[-744693-(-744704)]]S[D]=p D=Y[k[401929-401917]]p={D(S)}l={y(p)}D=U[H(909750-922772)]end else l=H(434025+-447028)D=U[l]S=H(699771-712791)l=U[S]S=H(-260776+247756)U[S]=D S=H(294010+-307013)U[S]=l S=Y[k[-415662+415663]]p=S()D=663923+15275525 end else if D<-419002+7763432 then Y[p]=N D=Y[p]D=D and 832003+10723501 or 5560573-673015 else D=true D=D and 3168223-(-185369)or-29584+6636475 end end else if D<-799906+8620382 then if D<-785904+8495646 then D=m l=Z D=Z and 9028108-(-537756)or 11758441-(-985303)else S=R D=true W=H(-721972-(-708953))p=j()Q=j()Y[p]=D l=U[W]W=H(631978-645021)D=l[W]b=j()t=M(572625+14357464,{b})W=j()Y[W]=D D=u(1024780-654345,{})Y[Q]=D D=false Y[b]=D r=H(-139257-(-126226))I=U[r]r=I(t)D=r and-733787+10904614 or-725403+15369679 l=r end else if D<8831138-697547 then V=H(23071-36115)i=U[V]V=H(486848+-499849)B=i[V]D=-369602+7995299 Z=B else S=nil D=8785478-(-654808)Y[k[-985728+985733]]=l end end end end end else if D<11781330-(-987967)then if D<11047762-393774 then if D<1045023+8810988 then if D<-247373+9785717 then if D<-236052+9440644 then if D<510187+8527748 then f=485616-485615 D=5462915-(-1044043)o=E[f]T=o else D=11525443-(-439423)t=m A=H(-786177-(-773158))d=U[A]A=H(6320-19336)N=d[A]d=N(S,t)N=Y[k[965574-965568]]A=N()F=d+A A=272608+-272607 t=nil v=F+I F=746835-746579 V=v%F I=V F=W[p]d=I+A N=Q[d]v=F..N W[p]=v end else D=Y[k[-680267-(-680274)]]D=D and 540177+3697862 or-79427+9989087 end else if D<628408+9199523 then Z=j()V=H(-666891+653860)B=481540-481475 Y[Z]=l m=489589-489586 v=a(5590180-474661,{})D=Y[r]l=D(m,B)D=428124-428124 m=j()B=D Y[m]=l D=-592366+592366 l=U[V]V={l(v)}i=D l=1034235+-1034233 D={y(V)}V=D D=V[l]v=D l=H(374840-387869)D=U[l]F=Y[W]A=H(877756-890767)d=U[A]A=d(v)d=H(-521490+508473)N=F(A,d)F={N()}l=D(y(F))F=j()Y[F]=l l=-75802+75803 N=Y[m]d=N N=-933603+933604 A=N N=629714+-629714 q=A<N D=14824589-(-20017)N=l-A else D=11734103-(-301316)F=#V q=819129-819129 v=F==q end end else if D<-780290+10770138 then if D<9938138-44378 then o=Y[p]D=o and-962944+9821704 or-840091+7347049 T=o else D={}W=Y[k[942531-942522]]S=D Q=W W=-194347-(-194348)b=W D=-484401+7742391 W=-564387-(-564387)p=-458207+458208 I=b<W W=p-b end else if D<12937+10131753 then p=H(510272+-523306)W=16096375-494516 l=740358-(-75818)S=p^W D=l-S l=H(787502-800542)S=D D=l/S l={D}D=U[H(-41648-(-28618))]else I=Y[b]l=I D=13604951-(-1039325)end end end else if D<11890689-33409 then if D<-4620+11560504 then if D<11271175-(-33617)then if D<10502323-(-536471)then D=15287166-(-652282)else W=H(-433437+420393)p=U[W]W=H(821568+-834614)S=p[W]D=U[H(738949+-751988)]W=Y[k[636122-636121]]p={S(W)}l={y(p)}end else D=14241754-(-705001)end else if D<494238+11205029 then S=Y[k[-511033-(-511034)]]l=#S S=254134-254134 D=l==S D=D and 13571317-(-758640)or-850045+11912864 else d=B==i D=7172238-(-145227)N=d end end else if D<12898553-832563 then if D<12867214-837787 then V=not i m=m+B t=m<=Z t=V and t V=m>=Z V=i and V t=V or t V=367262+8681261 D=t and V t=2248173-182026 D=D or t else q=#V F=365975-365974 v=Q(F,q)P=318840+-318839 F=I(V,v)q=Y[i]v=nil X=F-P D=-817552+2321098 s=r(X)q[F]=s F=nil end else if D<604244+11808903 then d=Y[p]D=d and 12645958-890843 or 7226911-(-90554)N=d else m=H(177443-190444)Z=U[m]D=620660+8945204 l=Z end end end end else if D<15653206-765145 then if D<14895811-675960 then if D<14340307-731087 then if D<13951508-413200 then if D<14187510-792799 then p=Y[k[1025991+-1025988]]W=-722514-(-722577)S=p*W p=204891-204634 l=S%p D=1005794-99462 Y[k[592971-592968]]=l else v={}X=H(1000518+-1013542)B=nil F=j()c=H(595029-608074)Y[F]=v s=j()v=j()E=H(-397784-(-384771))P={}r=nil V=nil t=nil f=nil q=w(1013245+10667497,{F;Z;m,b})Y[v]=q q={}B=912530+20421731235987 b=G(b)Y[s]=q q=U[X]C=Y[s]L={[c]=C;[E]=f}X=q(P,L)W=X q=J(-694915+4285341,{s,F,i;Z;m;v})s=G(s)i=G(i)p=q Z=G(Z)m=G(m)Q=nil F=G(F)m=H(-340826-(-327814))r=H(-361751-(-348713))b=H(-157812-(-144787))I=nil v=G(v)Q=U[b]I=U[r]Z=p(m,B)t=W[Z]m=H(967778-980811)p=nil W=nil m=I[m]l={}D=U[H(623953-636962)]Z=true r={m(I,t,Z)}b=Q(y(r))Q=b()end else D=543130+6926088 end else if D<-746863+14528233 then Q=H(-614780+601769)l=H(-882455+869426)t=H(-1988-11043)D=U[l]Z=M(-911129+10951724,{})S=Y[k[37908-37904]]W=U[Q]r=U[t]t={r(Z)}r=679300-679298 I={y(t)}b=I[r]Q=W(b)W=H(-705696-(-692679))p=S(Q,W)S={p()}l=D(y(S))p=Y[k[423564+-423559]]S=l D=p and 16028256-792334 or 7866284-(-573513)l=p else q=H(-848206+835203)D=U[q]q=H(414114+-427134)U[q]=D D=-179777+13729864 end end else if D<13789722-(-548205)then if D<13417916-(-844095)then D=4711367-(-947837)else W=5973-5856 p=Y[k[216562-216560]]S=p*W p=23186815980790-256715 l=S+p S=269684+35184371819148 p=2146-2145 D=l%S Y[k[-655124-(-655126)]]=D S=Y[k[-662941-(-662944)]]l=S~=p D=-235797+13622926 end else if D<68336+14737648 then r=H(207789-220831)t=H(-802505-(-789461))I=l l=U[r]r=H(-774331+761324)i=H(-737982-(-724938))D=l[r]r=j()Y[r]=D l=U[t]t=H(-359994-(-346947))D=l[t]t=D B=U[i]Z=B m=D D=B and 7268481-(-607385)or 7439145-(-186552)else N=N+A s=not q l=N<=d l=s and l s=N>=d s=q and s l=s or l s=-587878+3989675 D=l and s l=11803842-(-530040)D=D or l end end end else if D<15028979-(-980579)then if D<-396310+15868696 then if D<588469+14454756 then if D<15020505-79415 then D=true l={}Y[k[-856938+856939]]=D D=U[H(-353531+340495)]else v=nil p=G(p)p=nil F=G(F)t=nil V=nil B=nil r=G(r)r=H(21851-34893)Z=G(Z)b=G(b)W=G(W)D=-639995+7808378 Q=G(Q)t=H(749944-762988)m=G(m)W=nil I=nil i=nil I=H(79527+-92569)b=U[I]I=H(-240213-(-227192))i=j()m=j()Q=b[I]v=522308-522307 b=j()Y[b]=Q I=U[r]r=H(-463161+450154)Q=I[r]r=U[t]Z=H(435131-448150)t=H(-19639+6593)I=r[t]t=U[Z]V={}F=584501+-584245 Z=H(-313031+299996)r=t[Z]t=-758819-(-758819)Z=j()B={}q=F Y[Z]=t t=171490+-171488 Y[m]=t t={}Y[i]=B B=761451-761451 F=829643+-829642 s=F F=-1044519-(-1044519)X=s<F F=v-s end else W=Y[k[233144+-233138]]p=W==S D=778150+7661647 l=p end else if D<276108+15557274 then D=o l=T D=738343+1051157 else D=true D=D and 7688071-383672 or 5132556-232052 end end else if D<16922258-282472 then if D<16860341-348081 then Z=219367+-219112 p=W D=Y[k[904364-904363]]t=-103318-(-103318)r=D(t,Z)S[p]=r p=nil D=-789424+8047414 else Q=825276-825275 p=Y[k[317148-317147]]b=1014427+-1014425 W=p(Q,b)p=835384-835383 S=W==p l=S D=S and-777180+17424165 or 17637550-877556 end else if D<17209712-510001 then D=l and 13318006-(-393402)or 9366892-(-73394)else p=Y[k[-416319+416321]]W=Y[k[211514-211511]]S=p==W l=S D=421560+16225425 end end end end end end end D=#x return y(l)end,function(U,H)local y=W(H)local R=function(R)return D(U,{R},H,y)end return R end return(b(7460550-(-324805),{}))(y(l))end)(getfenv and getfenv()or _ENV,unpack or table[H(-1024556+1011555)],newproxy,setmetatable,getmetatable,select,{...})end)(...)
+
+--// Load Fluent and Addons
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+
+--// Create Main Window
+local Window = Fluent:CreateWindow({
+    Title = "🌌 DLK SCRIPTS - Rivals " .. Fluent.Version,
+    SubTitle = "by Dadilk",
+    TabWidth = 170,
+    Size = UDim2.fromOffset(280, 280),
+    Acrylic = true,
+    Theme = "Darker",
+    MinimizeKey = Enum.KeyCode.LeftControl
+})
+
+local MainTab = Window:AddTab({ Title = "Main", Icon = "home" })
+
+local function DebugLog(msg)
+    print("🔧 [SwirlHub Debug]: " .. msg)
+end
+
+--// Welcome Notification
+Fluent:Notify({
+    Title = "🎉 Welcome",
+    Content = "DLK SCRIPTS Rivals has been successfully loaded!",
+    Duration = 5,
+    Type = "success"
+})
+
+DebugLog("Script initialization complete.")
+
+--// INFORMATION SECTION
+MainTab:AddParagraph({
+    Title = "ℹ️ INFORMATION",
+    Content = "🔹 Script may take a while to load.\n🔹 Questions? Join Discord: discord.gg/5c9D3VD7se\n🔹 ⚠️ Aimbot can sometimes glitch while aiming!"
+})
+
+local Players = game:FindService("Players") or game:GetService("Players")
+if not Players then
+    warn("⚠️ Players service is not available. Aimbot may fail.")
+end
+
+local LocalPlayer = Players.LocalPlayer
+local Options = Fluent.Options
+
+--// AIMBOT SETUP
+local AimbotEnabled = false
+local aimbotKey = Enum.KeyCode.E
+local lockedTarget = nil
+local isLocked = false
+local aimPart = "Head"
+local fovSize = 100
+local fovColor = Color3.fromRGB(255, 0, 0)
+
+--// FOV Circle
+local FOVCircle = Drawing.new("Circle")
+FOVCircle.Thickness = 2
+FOVCircle.Filled = false
+FOVCircle.Transparency = 1
+FOVCircle.NumSides = 100
+FOVCircle.Visible = false
+
+local function UpdateFOV()
+    FOVCircle.Radius = fovSize
+    FOVCircle.Color = fovColor
+    FOVCircle.Visible = AimbotEnabled
+end
+
+local function GetClosestTargetInFOV()
+    if not Players then return nil end
+    local closest, minDist = nil, math.huge
+    local mousePos = game:GetService("UserInputService"):GetMouseLocation()
+
+    for _, player in ipairs(Players:GetPlayers()) do
+        if player ~= LocalPlayer 
+           and player.Character 
+           and player.Character:FindFirstChild(aimPart) then
+
+            local targetPart = player.Character[aimPart]
+            local screenPoint, onScreen = workspace.CurrentCamera:WorldToViewportPoint(targetPart.Position)
+            local distance = (Vector2.new(screenPoint.X, screenPoint.Y) - mousePos).Magnitude
+
+            if onScreen and distance < fovSize and distance < minDist then
+                closest = player
+                minDist = distance
+            end
+        end
+    end
+    return closest
+end
+
+local function MoveMouseToTarget(target)
+    if target and target.Character and target.Character:FindFirstChild(aimPart) then
+        local targetPart = target.Character[aimPart]
+        local screenPoint, onScreen = workspace.CurrentCamera:WorldToViewportPoint(targetPart.Position)
+        if onScreen then
+            mousemoverel(
+                screenPoint.X - game:GetService("UserInputService"):GetMouseLocation().X, 
+                screenPoint.Y - game:GetService("UserInputService"):GetMouseLocation().Y
+            )
+        end
+    end
+end
+
+game:GetService("RunService").RenderStepped:Connect(function()
+    local mousePos = game:GetService("UserInputService"):GetMouseLocation()
+    FOVCircle.Position = mousePos
+    if isLocked and lockedTarget then
+        MoveMouseToTarget(lockedTarget)
+    end
+end)
+
+--// AIMBOT SECTION
+local AimbotSection = MainTab:AddSection("🎯 Aimbot")
+
+AimbotSection:AddToggle("AimbotToggle", {
+    Title = "✅ Enable Aimbot",
+    Default = false
+}):OnChanged(function(Value)
+    AimbotEnabled = Value
+    UpdateFOV()
+    Fluent:Notify({
+        Title = "🎯 Aimbot",
+        Content = Value and "Aimbot Enabled" or "Aimbot Disabled",
+        Duration = 4
+    })
+    DebugLog("Aimbot toggled: " .. tostring(Value))
+end)
+
+AimbotSection:AddSlider("FOVSize", {
+    Title = "🔘 FOV Circle Size",
+    Min = 50,
+    Max = 500,
+    Default = 100,
+    Rounding = 0,
+    Callback = function(Value)
+        fovSize = Value
+        UpdateFOV()
+        DebugLog("FOV size set to: " .. Value)
+    end
+})
+
+AimbotSection:AddColorpicker("FOVColor", {
+    Title = "🎨 FOV Circle Color",
+    Default = Color3.fromRGB(255, 0, 0)
+}):OnChanged(function()
+    fovColor = Options.FOVColor.Value
+    UpdateFOV()
+    Fluent:Notify({
+        Title = "🎯 Aimbot",
+        Content = "FOV Color updated!",
+        Duration = 4
+    })
+    DebugLog("FOV color changed.")
+end)
+
+AimbotSection:AddDropdown("AimPartDropdown", {
+    Title = "🎯 Aim Part",
+    Values = {"Head", "HumanoidRootPart"},
+    Default = "Head"
+}):OnChanged(function(Value)
+    aimPart = Value
+    Fluent:Notify({
+        Title = "🎯 Aimbot",
+        Content = "Aim Part set to " .. Value,
+        Duration = 4
+    })
+    DebugLog("Aim part changed to: " .. Value)
+end)
+
+AimbotSection:AddKeybind("AimbotKeybind", {
+    Title = "🎮 Aimbot Key",
+    Default = "E",
+    Mode = "Toggle",
+    Callback = function()
+        if AimbotEnabled then
+            if isLocked then
+                isLocked = false
+                lockedTarget = nil
+                Fluent:Notify({
+                    Title = "🎯 Aimbot",
+                    Content = "Target Unlocked",
+                    Duration = 4
+                })
+                DebugLog("Target unlocked.")
+            else
+                lockedTarget = GetClosestTargetInFOV()
+                if lockedTarget then
+                    isLocked = true
+                    Fluent:Notify({
+                        Title = "🎯 Aimbot",
+                        Content = "Target Locked",
+                        Duration = 4
+                    })
+                    DebugLog("Target locked onto: "..lockedTarget.Name)
+                else
+                    Fluent:Notify({
+                        Title = "🎯 Aimbot",
+                        Content = "No target in FOV!",
+                        Duration = 4
+                    })
+                    DebugLog("No valid target found in FOV.")
+                end
+            end
+        end
+    end,
+    ChangedCallback = function(NewKey)
+        aimbotKey = NewKey
+        Fluent:Notify({
+            Title = "🎯 Aimbot Key",
+            Content = "Keybind changed to " .. tostring(NewKey),
+            Duration = 4
+        })
+        DebugLog("Aimbot keybind changed to: " .. tostring(NewKey))
+    end
+})
+
+local ESPEnabled = false
+local ESPFillColor = Color3.fromRGB(255, 0, 0) 
+local ESPOutlineColor = Color3.fromRGB(255, 255, 255)
+local ESPFillTransparency = 0.5
+local ESPOutlineTransparency = 0
+local ESPAlwaysOnTop = true
+local ESPMaxDistance = 1000
+local ESPObjects = {}
+
+local function UpdateESPProperties()
+    for player, highlight in pairs(ESPObjects) do
+        if highlight and highlight.Parent then
+            pcall(function()
+                highlight.FillColor = ESPFillColor
+                highlight.OutlineColor = ESPOutlineColor
+                highlight.FillTransparency = ESPFillTransparency
+                highlight.OutlineTransparency = ESPOutlineTransparency
+                highlight.DepthMode = ESPAlwaysOnTop and Enum.HighlightDepthMode.AlwaysOnTop or Enum.HighlightDepthMode.Occluded
+                highlight.Enabled = ESPEnabled
+            end)
+        end
+    end
+end
+
+local function CreateESP(player)
+    if not player or player == LocalPlayer or ESPObjects[player] then return end
+
+    local success, highlight = pcall(function()
+        local hl = Instance.new("Highlight")
+        hl.FillColor = ESPFillColor
+        hl.OutlineColor = ESPOutlineColor
+        hl.FillTransparency = ESPFillTransparency
+        hl.OutlineTransparency = ESPOutlineTransparency
+        hl.DepthMode = ESPAlwaysOnTop and Enum.HighlightDepthMode.AlwaysOnTop or Enum.HighlightDepthMode.Occluded
+        hl.Enabled = ESPEnabled
+        hl.Parent = game:GetService("CoreGui")
+        return hl
+    end)
+
+    if not success or not highlight then
+        warn("❌ Error creating ESP for player: " .. (player.Name or "Unknown"))
+        return
+    end
+
+    ESPObjects[player] = highlight
+
+    local function UpdateCharacter()
+        task.wait(0.5)
+        if player and player.Character then
+            pcall(function() highlight.Adornee = player.Character end)
+        end
+    end
+
+    local charAddedConn = player.CharacterAdded:Connect(function()
+        pcall(UpdateCharacter)
+    end)
+
+    highlight:GetPropertyChangedSignal("Parent"):Connect(function()
+        if not highlight.Parent then
+            pcall(function() charAddedConn:Disconnect() end)
+        end
+    end)
+
+    pcall(UpdateCharacter)
+    DebugLog("ESP created for: " .. player.Name)
+end
+
+local function RemoveESP(player)
+    if ESPObjects[player] then
+        pcall(function() ESPObjects[player]:Destroy() end)
+        ESPObjects[player] = nil
+        DebugLog("ESP removed for: " .. player.Name)
+    end
+end
+
+for _, p in ipairs(Players:GetPlayers()) do
+    CreateESP(p)
+end
+
+Players.PlayerAdded:Connect(function(p)
+    CreateESP(p)
+end)
+
+Players.PlayerRemoving:Connect(function(p)
+    RemoveESP(p)
+end)
+
+game:GetService("RunService").RenderStepped:Connect(function()
+    if not ESPEnabled then
+        for _, highlight in pairs(ESPObjects) do
+            if highlight then
+                pcall(function() highlight.Enabled = false end)
+            end
+        end
+        return
+    end
+
+    for _, ply in ipairs(Players:GetPlayers()) do
+        local character = ply.Character
+        if character and character:FindFirstChild("HumanoidRootPart") and ESPObjects[ply] then
+            local success, distance = pcall(function()
+                return (character.HumanoidRootPart.Position - LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+            end)
+            if success then
+                pcall(function()
+                    ESPObjects[ply].Enabled = (distance <= ESPMaxDistance)
+                end)
+            end
+        end
+    end
+end)
+
+--// ESP SECTION
+local ESPSection = MainTab:AddSection("👀 ESP")
+
+ESPSection:AddToggle("ESPEnabled", {
+    Title = "✅ Enable ESP",
+    Default = false
+}):OnChanged(function(Value)
+    ESPEnabled = Value
+    if not Value then
+        for _, highlight in pairs(ESPObjects) do
+            pcall(function() highlight.Enabled = false end)
+        end
+    else
+        for _, p in ipairs(Players:GetPlayers()) do
+            CreateESP(p)
+        end
+        for _, highlight in pairs(ESPObjects) do
+            pcall(function() highlight.Enabled = true end)
+        end
+    end
+    
+    Fluent:Notify({
+        Title = "👀 ESP",
+        Content = Value and "ESP Enabled" or "ESP Disabled",
+        Duration = 4
+    })
+    DebugLog("ESP toggled: " .. tostring(Value))
+end)
+
+ESPSection:AddColorpicker("ESPFColor", {
+    Title = "🎨 ESP Fill Color",
+    Default = ESPFillColor
+}):OnChanged(function()
+    ESPFillColor = Options.ESPFColor.Value
+    UpdateESPProperties()
+    Fluent:Notify({
+        Title = "👀 ESP",
+        Content = "ESP Fill Color updated!",
+        Duration = 4
+    })
+    DebugLog("ESP fill color changed.")
+end)
+
+ESPSection:AddColorpicker("ESPOutlineColor", {
+    Title = "🎨 ESP Outline Color",
+    Default = ESPOutlineColor
+}):OnChanged(function()
+    ESPOutlineColor = Options.ESPOutlineColor.Value
+    UpdateESPProperties()
+    Fluent:Notify({
+        Title = "👀 ESP",
+        Content = "ESP Outline Color updated!",
+        Duration = 4
+    })
+    DebugLog("ESP outline color changed.")
+end)
+
+ESPSection:AddSlider("ESPFTransparency", {
+    Title = "🔘 ESP Fill Transparency",
+    Min = 0,
+    Max = 1,
+    Default = ESPFillTransparency,
+    Rounding = 2,
+    Callback = function(Value)
+        ESPFillTransparency = Value
+        UpdateESPProperties()
+        DebugLog("ESP fill transparency: "..Value)
+    end
+})
+
+ESPSection:AddSlider("ESPOutlineTransparency", {
+    Title = "🔘 ESP Outline Transparency",
+    Min = 0,
+    Max = 1,
+    Default = ESPOutlineTransparency,
+    Rounding = 2,
+    Callback = function(Value)
+        ESPOutlineTransparency = Value
+        UpdateESPProperties()
+        DebugLog("ESP outline transparency: "..Value)
+    end
+})
+
+ESPSection:AddToggle("ESPDepthMode", {
+    Title = "🔳 ESP Always On Top",
+    Default = true
+}):OnChanged(function(Value)
+    ESPAlwaysOnTop = Value
+    UpdateESPProperties()
+    Fluent:Notify({
+        Title = "👀 ESP",
+        Content = "ESP Depth Mode: " .. (Value and "Always On Top" or "Occluded"),
+        Duration = 4
+    })
+    DebugLog("ESP depth mode: " .. tostring(Value))
+end)
+
+ESPSection:AddSlider("ESPMaxDistance", {
+    Title = "📏 ESP Max Distance",
+    Min = 100,
+    Max = 3000,
+    Default = ESPMaxDistance,
+    Rounding = 0,
+    Callback = function(Value)
+        ESPMaxDistance = Value
+        DebugLog("ESP max distance set to: "..Value)
+    end
+})
+
+--// LOCALPLAYER FEATURES
+local noclipEnabled = false
+local infJumpEnabled = false
+local flyEnabled = false
+local flySpeed = 50
+
+game:GetService("UserInputService").JumpRequest:Connect(function()
+    if infJumpEnabled and LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass("Humanoid") then
+        LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
+    end
+end)
+
+game:GetService("RunService").Stepped:Connect(function()
+    if noclipEnabled and LocalPlayer.Character then
+        for _, part in ipairs(LocalPlayer.Character:GetDescendants()) do
+            if part:IsA("BasePart") then
+                part.CanCollide = false
+            end
+        end
+    end
+end)
+
+local LocalPlayerSection = MainTab:AddSection("🧍 LocalPlayer Features")
+
+LocalPlayerSection:AddToggle("Noclip", {
+    Title = "🚫 Noclip",
+    Default = false
+}):OnChanged(function(Value)
+    noclipEnabled = Value
+    Fluent:Notify({
+        Title = "🧍 Noclip",
+        Content = Value and "Noclip Enabled" or "Noclip Disabled",
+        Duration = 4
+    })
+    DebugLog("Noclip toggled: " .. tostring(Value))
+end)
+
+LocalPlayerSection:AddToggle("InfJump", {
+    Title = "🔝 Infinite Jump",
+    Default = false
+}):OnChanged(function(Value)
+    infJumpEnabled = Value
+    Fluent:Notify({
+        Title = "🧍 Infinite Jump",
+        Content = Value and "Infinite Jump Enabled" or "Infinite Jump Disabled",
+        Duration = 4
+    })
+    DebugLog("Infinite jump toggled: " .. tostring(Value))
+end)
+
+LocalPlayerSection:AddToggle("Fly", {
+    Title = "🦋 Fly",
+    Default = false
+}):OnChanged(function(Value)
+    flyEnabled = Value
+    Fluent:Notify({
+        Title = "🧍 Fly",
+        Content = Value and "Fly Mode Enabled" or "Fly Mode Disabled",
+        Duration = 4
+    })
+    DebugLog("Fly toggled: " .. tostring(Value))
+
+    if Value then
+        -- Start Fly
+        spawn(function()
+            local character = LocalPlayer.Character
+            if not character then return end
+            local humanoid = character:FindFirstChildOfClass("Humanoid")
+            local hrp = character:FindFirstChild("HumanoidRootPart")
+            if humanoid and hrp then
+                humanoid.PlatformStand = true
+                local bodyVelocity = Instance.new("BodyVelocity")
+                bodyVelocity.Velocity = Vector3.new(0, 0, 0)
+                bodyVelocity.MaxForce = Vector3.new(1e5, 1e5, 1e5)
+                bodyVelocity.Parent = hrp
+
+                local uis = game:GetService("UserInputService")
+                while flyEnabled and character and character.Parent do
+                    local moveDir = Vector3.new(0, 0, 0)
+                    if uis:IsKeyDown(Enum.KeyCode.W) then
+                        moveDir = moveDir + workspace.CurrentCamera.CFrame.LookVector
+                    end
+                    if uis:IsKeyDown(Enum.KeyCode.S) then
+                        moveDir = moveDir - workspace.CurrentCamera.CFrame.LookVector
+                    end
+                    if uis:IsKeyDown(Enum.KeyCode.A) then
+                        moveDir = moveDir - workspace.CurrentCamera.CFrame.RightVector
+                    end
+                    if uis:IsKeyDown(Enum.KeyCode.D) then
+                        moveDir = moveDir + workspace.CurrentCamera.CFrame.RightVector
+                    end
+                    if uis:IsKeyDown(Enum.KeyCode.Space) then
+                        moveDir = moveDir + Vector3.new(0, 1, 0)
+                    end
+                    if uis:IsKeyDown(Enum.KeyCode.LeftControl) then
+                        moveDir = moveDir - Vector3.new(0, 1, 0)
+                    end
+                    bodyVelocity.Velocity = moveDir * flySpeed
+                    wait(0.01)
+                end
+                bodyVelocity:Destroy()
+                humanoid.PlatformStand = false
+            end
+        end)
+    end
+end)
+
+LocalPlayerSection:AddSlider("FlySpeed", {
+    Title = "💨 Fly Speed",
+    Min = 10,
+    Max = 200,
+    Default = flySpeed,
+    Rounding = 0,
+    Callback = function(Value)
+        flySpeed = Value
+        DebugLog("Fly speed set to: " .. Value)
+    end
+})
+
+local ExtraSection = MainTab:AddSection("✨ Extra")
+
+local success, run_service = pcall(function() return game:GetService("RunService") end)
+if not success or not run_service then
+    warn("Failed to get RunService!")
+    return
+end
+
+local players = game:GetService("Players")
+local localplayer = players.LocalPlayer
+local playerscripts = localplayer:FindFirstChild("PlayerScripts")
+local spinning = false
+local spin_speed = 100
+local spin_connection
+
+local camera_controller
+local camera_controller_success, camera_controller_result = pcall(function()
+    return require(playerscripts.Controllers.CameraController)
+end)
+
+if camera_controller_success then
+    camera_controller = camera_controller_result
+else
+    camera_controller = nil
+end
+
+local function sendFluentNotification(title, content, subcontent, duration)
+    Fluent:Notify({
+        Title = title,
+        Content = content,
+        SubContent = subcontent or "",
+        Duration = duration or 5
+    })
+end
+
+local function toggleThirdPerson(enabled)
+    if camera_controller then
+        camera_controller:SetPOV(not enabled, 0, false) -- third person
+    else
+        sendFluentNotification("Executor Error", "Your executor does not support require()!", "Third-person may not work!", 5)
+    end
+end
+
+local function toggleSpin(enabled)
+    if not run_service then
+        warn("RunService is nil, cannot enable spin.")
+        return
+    end
+
+    if enabled then
+        spinning = true
+        if spin_connection then spin_connection:Disconnect() end
+        spin_connection = run_service.RenderStepped:Connect(function()
+            if localplayer.Character and localplayer.Character:FindFirstChild("HumanoidRootPart") then
+                local root = localplayer.Character.HumanoidRootPart
+                root.CFrame = root.CFrame * CFrame.Angles(0, math.rad(spin_speed), 0)
+            end
+        end)
+    else
+        spinning = false
+        if spin_connection then
+            spin_connection:Disconnect()
+            spin_connection = nil
+        end
+    end
+end
+
+ExtraSection:AddToggle("ThirdPersonToggle", {
+    Title = "👁️ Third Person",
+    Default = false
+}):OnChanged(function(Value)
+    toggleThirdPerson(Value)
+    DebugLog("Third-person toggled: "..tostring(Value))
+end)
+
+ExtraSection:AddToggle("SpinToggle", {
+    Title = "🔄 Spin Character",
+    Default = false
+}):OnChanged(function(Value)
+    toggleSpin(Value)
+    DebugLog("Spin toggled: "..tostring(Value))
+end)
+
+local ClientSection = MainTab:AddSection("💡 Client")
+
+local Lighting = game:GetService("Lighting")
+local isDarkMode = false
+
+local function toggleDarkMode()
+    if isDarkMode then
+        Lighting.Brightness = 2
+        Lighting.OutdoorAmbient = Color3.fromRGB(200, 200, 200)
+        Lighting.Ambient = Color3.fromRGB(255, 255, 255)
+        isDarkMode = false
+        Fluent:Notify({
+            Title = "💡 Mode Switched",
+            Content = "Switched to Light Mode",
+            Duration = 3
+        })
+        DebugLog("Light mode activated.")
+    else
+        Lighting.Brightness = 0.5
+        Lighting.OutdoorAmbient = Color3.fromRGB(30, 30, 30)
+        Lighting.Ambient = Color3.fromRGB(20, 20, 20)
+        isDarkMode = true
+        Fluent:Notify({
+            Title = "💡 Mode Switched",
+            Content = "Switched to Dark Mode",
+            Duration = 3
+        })
+        DebugLog("Dark mode activated.")
+    end
+end
+
+ClientSection:AddButton({
+    Title = "🌓 Toggle Dark/Light Mode",
+    Description = "Switch between dark mode and light mode",
+    Callback = function()
+        toggleDarkMode()
+    end
+})
+
+--// Save/Load System
+SaveManager:SetLibrary(Fluent)
+InterfaceManager:SetLibrary(Fluent)
+SaveManager:IgnoreThemeSettings()
+SaveManager:SetIgnoreIndexes({})
+InterfaceManager:SetFolder("SwirlHub")
+SaveManager:SetFolder("SwirlHub/rivals")
+
+
+Window:SelectTab(1)
+
+Fluent:Notify({
+    Title = "DLK SCRIPTS",
+    Content = "The script has been loaded successfully!",
+    Duration = 4
+})
+
+SaveManager:LoadAutoloadConfig()
+
+DebugLog("Script fully loaded! Enjoy 🚀")
