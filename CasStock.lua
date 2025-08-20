@@ -248,7 +248,7 @@ Settings:CreateInput({
 })
 
 ESP:CreateToggle({
-	Name = "Config ESP",
+	Name = "ESP👕",
 	CurrentValue = false,
 	Callback = function(toggle)
 		if toggle then
