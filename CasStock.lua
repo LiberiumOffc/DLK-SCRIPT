@@ -275,7 +275,7 @@ ESP:CreateToggle({
 										local ESP_Highlight = Instance.new("Highlight")
 										ESP_Highlight.FillTransparency = 0.25
 										ESP_Highlight.OutlineTransparency = 1
-										ESP_Highlight.FillColor = Color3.fromRGB(88, 0, 255)
+										ESP_Highlight.FillColor = Color3.fromRGB(255, 165, 0)
 										ESP_Highlight.Parent = clothing
 									end
 								end
