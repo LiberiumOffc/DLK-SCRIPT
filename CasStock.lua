@@ -75,7 +75,7 @@ local function Notify(name, content, time, image)
 	})
 end
 
-Notify("Casual Stock V1.0","Version - Alpha", 5)
+Notify("Casual Stock V1.0","Version - 1.1.0", 5)
 
 local Misc = Window:CreateTab("Configuration", 4483362458)
 local Settings = Window:CreateTab("Settings", 4483362458)
@@ -102,7 +102,7 @@ local ConfigsDropdown = Misc:CreateDropdown({
 	end
 })
 
-local Section = Misc:CreateSection("Настройка")
+local Section = Misc:CreateSection("Настройка⚙")
 
 Misc:CreateButton({
 	Name = "Обновить список [Config]",
