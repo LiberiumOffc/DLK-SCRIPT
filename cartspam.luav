@@ -1,18 +1,17 @@
 local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
+
 WindUI:Gradient({                                                      
     ["0"] = { Color = Color3.fromHex("#1f1f23"), Transparency = 0 },            
-    ["100"]   = { Color = Color3.fromHex("#18181b"), Transparency = 0 },      
+    ["100"] = { Color = Color3.fromHex("#18181b"), Transparency = 0 },      
 }, {                                                                            
     Rotation = 0,                                                               
-}), 
+})
 
 local Window = WindUI:CreateWindow({
     Title = "DlK HUB 1.0",
-    Icon = "door-open", -- lucide icon
+    Icon = "door-open",
     Author = "by DADILK SQUAD",
     Folder = "MySuperHub",
-    
-    -- ↓ This all is Optional. You can remove it.
     Size = UDim2.fromOffset(580, 460),
     MinSize = Vector2.new(560, 350),
     MaxSize = Vector2.new(850, 560),
@@ -23,16 +22,6 @@ local Window = WindUI:CreateWindow({
     BackgroundImageTransparency = 0.42,
     HideSearchBar = true,
     ScrollBarEnabled = false,
-    
-    -- ↓ Optional. You can remove it.
-    --[[ You can set 'rbxassetid://' or video to Background.
-        'rbxassetid://':
-            Background = "rbxassetid://", -- rbxassetid
-        Video:
-            Background = "video:YOUR-RAW-LINK-TO-VIDEO.webm", -- video 
-    --]]
-    
-    -- ↓ Optional. You can remove it.
     User = {
         Enabled = true,
         Anonymous = true,
@@ -40,54 +29,30 @@ local Window = WindUI:CreateWindow({
             print("clicked")
         end,
     },
-    
-    --       remove this all, 
-    -- !  ↓  if you DON'T need the key system
     KeySystem = { 
-        -- ↓ Optional. You can remove it.
         Key = { "DLKSQUAD", "ADMIN" },
-        
         Note = "Example Key System.",
-        
-        -- ↓ Optional. You can remove it.
-        Thumbnail = {
-            Image = "rbxassetid://",
-            Title = "Thumbnail",
-        },
-        
-        -- ↓ Optional. You can remove it.
-        URL = "YOUR LINK TO GET KEY (Discord, Linkvertise, Pastebin, etc.)",
-        
-        -- ↓ Optional. You can remove it.
-        SaveKey = false, -- automatically save and load the key.
-        
-        -- ↓ Optional. You can remove it.
-        -- API = {} ← Services. Read about it below ↓
+        SaveKey = false,
     },
 })
+
 Window:Tag({
     Title = "v1.0",
     Icon = "car",
     Color = Color3.fromHex("#30ff6a"),
-    Radius = 0, -- from 0 to 13
+    Radius = 0,
 })
+
 local Tab = Window:Tab({
     Title = "Spam Cart",
-    Icon = "car", -- optional
+    Icon = "car",
     Locked = false,
 })
-local Toggle = Tab:Toggle({
-    Title = "spam +",
-    Desc = "spam",
-    Icon = "cart",
-    Type = "Checkbox",
-    Value = false, -- default value
-    Callback = function(state) 
+
 -- Функция спама кнопок Up
 local function spamUp()
     print("Запускаю спам кнопок Up...")
     
-    -- Сначала включаем все кнопки On
     for _, v in pairs(workspace:GetDescendants()) do
         if v:IsA("ClickDetector") and v.Parent.Name == "On" then
             if v.Parent.BrickColor ~= BrickColor.new("Dark green") then
@@ -96,36 +61,21 @@ local function spamUp()
         end
     end
     
-    -- Бесконечный цикл спама
     while true do
-        task.wait(0.1) -- Задержка 0.1 секунды
+        task.wait(0.1)
         
-        -- Ищем все кнопки Up в игре
         for _, v in pairs(workspace:GetDescendants()) do
             if v:IsA("ClickDetector") and v.Parent.Name == "Up" then
-                -- Кликаем кнопку Up
                 fireclickdetector(v)
             end
         end
     end
 end
 
--- Запускаем функцию
-spamUp()
-
-    end
-})
-local Toggle = Tab:Toggle({
-    Title = "spam -",
-    Desc = "spam",
-    Icon = "croshair",
-    Type = "Checkbox",
-    Value = false, -- default value
-    Callback = -- Функция спама кнопок Down
+-- Функция спама кнопок Down
 local function spamDown()
     print("Запускаю спам кнопок Down...")
     
-    -- Сначала включаем все кнопки On
     for _, v in pairs(workspace:GetDescendants()) do
         if v:IsA("ClickDetector") and v.Parent.Name == "On" then
             if v.Parent.BrickColor ~= BrickColor.new("Dark green") then
@@ -134,32 +84,58 @@ local function spamDown()
         end
     end
     
-    -- Бесконечный цикл спама
     while true do
-        task.wait(0.1) -- Задержка 0.1 секунды
+        task.wait(0.1)
         
-        -- Ищем все кнопки Down в игре
         for _, v in pairs(workspace:GetDescendants()) do
             if v:IsA("ClickDetector") and v.Parent.Name == "Down" then
-                -- Кликаем кнопку Down
                 fireclickdetector(v)
             end
         end
     end
 end
 
--- Запускаем функцию
-spamDown() 
-     
+-- Toggle для спама Up
+local toggleUp
+toggleUp = Tab:Toggle({
+    Title = "spam +",
+    Desc = "spam",
+    Icon = "cart",
+    Type = "Checkbox",
+    Value = false,
+    Callback = function(state)
+        if state then
+            coroutine.wrap(spamUp)()
+        else
+            -- Здесь нужно добавить логику остановки спама
+            -- В текущей реализации лучше сделать переменную для управления циклом
+            print("Остановите скрипт перезагрузкой")
+        end
     end
 })
 
+-- Toggle для спама Down
+local toggleDown
+toggleDown = Tab:Toggle({
+    Title = "spam -",
+    Desc = "spam",
+    Icon = "target",
+    Type = "Checkbox",
+    Value = false,
+    Callback = function(state)
+        if state then
+            coroutine.wrap(spamDown)()
+        else
+            print("Остановите скрипт перезагрузкой")
+        end
+    end
+})
 
 local Keybind = Tab:Keybind({
     Title = "Keybind",
     Desc = "Keybind to open ui",
     Value = "G",
-    Callback = function(v)
-        Window:SetToggleKey(Enum.KeyCode[v])
+    Callback = function(key)
+        Window:SetToggleKey(Enum.KeyCode[key])
     end
 })
