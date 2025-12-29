@@ -1,246 +1,165 @@
--- Cart Ride GUI - Simple Version
-local function makeGUI()
-    -- Создаем интерфейс
-    local screenGui = Instance.new("ScreenGui")
-    screenGui.Name = "CartRideGUI"
-    screenGui.Parent = game.CoreGui
+local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
+WindUI:Gradient({                                                      
+    ["0"] = { Color = Color3.fromHex("#1f1f23"), Transparency = 0 },            
+    ["100"]   = { Color = Color3.fromHex("#18181b"), Transparency = 0 },      
+}, {                                                                            
+    Rotation = 0,                                                               
+}), 
+
+local Window = WindUI:CreateWindow({
+    Title = "DlK HUB 1.0",
+    Icon = "door-open", -- lucide icon
+    Author = "by DADILK SQUAD",
+    Folder = "MySuperHub",
     
-    -- Главное окно
-    local mainFrame = Instance.new("Frame")
-    mainFrame.Name = "MainFrame"
-    mainFrame.Size = UDim2.new(0, 300, 0, 250)
-    mainFrame.Position = UDim2.new(0.5, -150, 0.5, -125)
-    mainFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-    mainFrame.BorderSizePixel = 0
-    mainFrame.Parent = screenGui
+    -- ↓ This all is Optional. You can remove it.
+    Size = UDim2.fromOffset(580, 460),
+    MinSize = Vector2.new(560, 350),
+    MaxSize = Vector2.new(850, 560),
+    Transparent = true,
+    Theme = "Dark",
+    Resizable = true,
+    SideBarWidth = 200,
+    BackgroundImageTransparency = 0.42,
+    HideSearchBar = true,
+    ScrollBarEnabled = false,
     
-    -- Заголовок
-    local title = Instance.new("TextLabel")
-    title.Name = "Title"
-    title.Size = UDim2.new(1, 0, 0, 40)
-    title.Position = UDim2.new(0, 0, 0, 0)
-    title.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-    title.Text = "Cart Ride GUI"
-    title.TextColor3 = Color3.fromRGB(255, 255, 255)
-    title.Font = Enum.Font.GothamBold
-    title.TextSize = 18
-    title.Parent = mainFrame
+    -- ↓ Optional. You can remove it.
+    --[[ You can set 'rbxassetid://' or video to Background.
+        'rbxassetid://':
+            Background = "rbxassetid://", -- rbxassetid
+        Video:
+            Background = "video:YOUR-RAW-LINK-TO-VIDEO.webm", -- video 
+    --]]
     
-    -- Кнопка закрытия
-    local closeButton = Instance.new("TextButton")
-    closeButton.Name = "CloseButton"
-    closeButton.Size = UDim2.new(0, 30, 0, 30)
-    closeButton.Position = UDim2.new(1, -30, 0, 5)
-    closeButton.BackgroundColor3 = Color3.fromRGB(255, 50, 50)
-    closeButton.Text = "X"
-    closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-    closeButton.Font = Enum.Font.GothamBold
-    closeButton.TextSize = 14
-    closeButton.Parent = mainFrame
+    -- ↓ Optional. You can remove it.
+    User = {
+        Enabled = true,
+        Anonymous = true,
+        Callback = function()
+            print("clicked")
+        end,
+    },
     
-    closeButton.MouseButton1Click:Connect(function()
-        screenGui:Destroy()
-    end)
-    
-    -- Делаем окно перетаскиваемым
-    local dragging = false
-    local dragInput, dragStart, startPos
-    
-    title.InputBegan:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseButton1 then
-            dragging = true
-            dragStart = input.Position
-            startPos = mainFrame.Position
-            
-            input.Changed:Connect(function()
-                if input.UserInputState == Enum.UserInputState.End then
-                    dragging = false
-                end
-            end)
-        end
-    end)
-    
-    title.InputChanged:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseMovement then
-            dragInput = input
-        end
-    end)
-    
-    game:GetService("UserInputService").InputChanged:Connect(function(input)
-        if input == dragInput and dragging then
-            local delta = input.Position - dragStart
-            mainFrame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-        end
-    end)
-    
-    -- Функция для создания кнопок
-    local function createButton(name, position, callback)
-        local button = Instance.new("TextButton")
-        button.Name = name
-        button.Size = UDim2.new(0.9, 0, 0, 40)
-        button.Position = position
-        button.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
-        button.BorderSizePixel = 0
-        button.Text = name
-        button.TextColor3 = Color3.fromRGB(255, 255, 255)
-        button.Font = Enum.Font.Gotham
-        button.TextSize = 14
-        button.Parent = mainFrame
+    --       remove this all, 
+    -- !  ↓  if you DON'T need the key system
+    KeySystem = { 
+        -- ↓ Optional. You can remove it.
+        Key = { "DLKSQUAD", "ADMIN" },
         
-        button.MouseButton1Click:Connect(callback)
+        Note = "Example Key System.",
         
-        -- Эффект при наведении
-        button.MouseEnter:Connect(function()
-            game:GetService("TweenService"):Create(button, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(80, 80, 80)}):Play()
-        end)
+        -- ↓ Optional. You can remove it.
+        Thumbnail = {
+            Image = "rbxassetid://",
+            Title = "Thumbnail",
+        },
         
-        button.MouseLeave:Connect(function()
-            game:GetService("TweenService"):Create(button, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(60, 60, 60)}):Play()
-        end)
+        -- ↓ Optional. You can remove it.
+        URL = "YOUR LINK TO GET KEY (Discord, Linkvertise, Pastebin, etc.)",
+        
+        -- ↓ Optional. You can remove it.
+        SaveKey = false, -- automatically save and load the key.
+        
+        -- ↓ Optional. You can remove it.
+        -- API = {} ← Services. Read about it below ↓
+    },
+})
+Window:Tag({
+    Title = "v1.0",
+    Icon = "car",
+    Color = Color3.fromHex("#30ff6a"),
+    Radius = 0, -- from 0 to 13
+})
+local Tab = Window:Tab({
+    Title = "Spam Cart",
+    Icon = "car", -- optional
+    Locked = false,
+})
+local Toggle = Tab:Toggle({
+    Title = "spam +",
+    Desc = "spam",
+    Icon = "cart",
+    Type = "Checkbox",
+    Value = false, -- default value
+    Callback = function(state) 
+-- Функция спама кнопок Up
+local function spamUp()
+    print("Запускаю спам кнопок Up...")
+    
+    -- Сначала включаем все кнопки On
+    for _, v in pairs(workspace:GetDescendants()) do
+        if v:IsA("ClickDetector") and v.Parent.Name == "On" then
+            if v.Parent.BrickColor ~= BrickColor.new("Dark green") then
+                fireclickdetector(v)
+            end
+        end
     end
     
-    -- Переменные для управления
-    local upSpam = false
-    local downSpam = false
-    local chaosMode = false
-    
-    -- Функция для включения кнопок On
-    local function enableOnButtons()
+    -- Бесконечный цикл спама
+    while true do
+        task.wait(0.1) -- Задержка 0.1 секунды
+        
+        -- Ищем все кнопки Up в игре
         for _, v in pairs(workspace:GetDescendants()) do
-            if v:IsA("ClickDetector") and v.Parent.Name == "On" then
-                if v.Parent.BrickColor ~= BrickColor.new("Dark green") then
-                    fireclickdetector(v)
-                end
-                
-                -- Отслеживаем изменение цвета
-                local connection
-                connection = v.Parent.Changed:Connect(function(property)
-                    if property == "BrickColor" then
-                        if v.Parent.BrickColor ~= BrickColor.new("Dark green") then
-                            fireclickdetector(v)
-                        end
-                    end
-                end)
-                
-                -- Очищаем соединение при удалении объекта
-                v.Parent.AncestryChanged:Connect(function(_, parent)
-                    if not parent then
-                        connection:Disconnect()
-                    end
-                end)
+            if v:IsA("ClickDetector") and v.Parent.Name == "Up" then
+                -- Кликаем кнопку Up
+                fireclickdetector(v)
             end
         end
     end
-    
-    -- Кнопка 1: Спам Up
-    createButton("Спам кнопок Up", UDim2.new(0.05, 0, 0.2, 0), function()
-        upSpam = not upSpam
-        enableOnButtons()
-        
-        if upSpam then
-            print("Up спам активирован")
-            
-            -- Спамим существующие кнопки Up
-            for _, v in pairs(workspace:GetDescendants()) do
-                if v:IsA("ClickDetector") and v.Parent.Name == "Up" then
-                    task.spawn(function()
-                        while upSpam and v and v.Parent do
-                            task.wait()
-                            fireclickdetector(v)
-                        end
-                    end)
-                end
-            end
-            
-            -- Отслеживаем новые кнопки
-            workspace.DescendantAdded:Connect(function(descendant)
-                if upSpam and descendant:IsA("ClickDetector") and descendant.Parent.Name == "Up" then
-                    task.spawn(function()
-                        while upSpam and descendant and descendant.Parent do
-                            task.wait()
-                            fireclickdetector(descendant)
-                        end
-                    end)
-                end
-            end)
-        else
-            print("Up спам деактивирован")
-        end
-    end)
-    
-    -- Кнопка 2: Спам Down
-    createButton("Спам кнопок Down", UDim2.new(0.05, 0, 0.4, 0), function()
-        downSpam = not downSpam
-        enableOnButtons()
-        
-        if downSpam then
-            print("Down спам активирован")
-            
-            -- Спамим существующие кнопки Down
-            for _, v in pairs(workspace:GetDescendants()) do
-                if v:IsA("ClickDetector") and v.Parent.Name == "Down" then
-                    task.spawn(function()
-                        while downSpam and v and v.Parent do
-                            task.wait()
-                            fireclickdetector(v)
-                        end
-                    end)
-                end
-            end
-            
-            -- Отслеживаем новые кнопки
-            workspace.DescendantAdded:Connect(function(descendant)
-                if downSpam and descendant:IsA("ClickDetector") and descendant.Parent.Name == "Down" then
-                    task.spawn(function()
-                        while downSpam and descendant and descendant.Parent do
-                            task.wait()
-                            fireclickdetector(descendant)
-                        end
-                    end)
-                end
-            end)
-        else
-            print("Down спам деактивирован")
-        end
-    end)
-    
-    -- Кнопка 3: Хаос
-    createButton("Хаос с тележками", UDim2.new(0.05, 0, 0.6, 0), function()
-        chaosMode = not chaosMode
-        
-        if chaosMode then
-            print("Хаос активирован")
-            
-            task.spawn(function()
-                while chaosMode do
-                    task.wait(0.3)
-                    
-                    -- Включаем все кнопки On
-                    enableOnButtons()
-                    
-                    -- Кликаем все кнопки
-                    for _, v in pairs(workspace:GetDescendants()) do
-                        if v:IsA("ClickDetector") then
-                            pcall(function()
-                                fireclickdetector(v)
-                            end)
-                        end
-                    end
-                end
-            end)
-        else
-            print("Хаос деактивирован")
-        end
-    end)
-    
-    -- Кнопка 4: Остановить все
-    createButton("Остановить все", UDim2.new(0.05, 0, 0.8, 0), function()
-        upSpam = false
-        downSpam = false
-        chaosMode = false
-        print("Все скрипты остановлены")
-    end)
 end
 
--- Запускаем GUI
-makeGUI()
+-- Запускаем функцию
+spamUp()
+
+    end
+})
+local Toggle = Tab:Toggle({
+    Title = "spam -",
+    Desc = "spam",
+    Icon = "croshair",
+    Type = "Checkbox",
+    Value = false, -- default value
+    Callback = -- Функция спама кнопок Down
+local function spamDown()
+    print("Запускаю спам кнопок Down...")
+    
+    -- Сначала включаем все кнопки On
+    for _, v in pairs(workspace:GetDescendants()) do
+        if v:IsA("ClickDetector") and v.Parent.Name == "On" then
+            if v.Parent.BrickColor ~= BrickColor.new("Dark green") then
+                fireclickdetector(v)
+            end
+        end
+    end
+    
+    -- Бесконечный цикл спама
+    while true do
+        task.wait(0.1) -- Задержка 0.1 секунды
+        
+        -- Ищем все кнопки Down в игре
+        for _, v in pairs(workspace:GetDescendants()) do
+            if v:IsA("ClickDetector") and v.Parent.Name == "Down" then
+                -- Кликаем кнопку Down
+                fireclickdetector(v)
+            end
+        end
+    end
+end
+
+-- Запускаем функцию
+spamDown() 
+     
+    end
+})
+
+
+local Keybind = Tab:Keybind({
+    Title = "Keybind",
+    Desc = "Keybind to open ui",
+    Value = "G",
+    Callback = function(v)
+        Window:SetToggleKey(Enum.KeyCode[v])
+    end
+})
