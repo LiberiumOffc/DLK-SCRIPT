@@ -1,138 +1,224 @@
---[[
-	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
-]]
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+-- Rayfield GUI Script
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
-local Window = OrionLib:MakeWindow({Name = "Cart Ride GUI", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest", IntroText = "Cart Ride GUI"})
-
-local Tab = Window:MakeTab({
-    Name = "Main",
-    Icon = "rbxassetid://8950630642",
-    PremiumOnly = false
+-- Создаем окно
+local Window = Rayfield:CreateWindow({
+    Name = "Cart Ride GUI",
+    LoadingTitle = "Загрузка...",
+    LoadingSubtitle = "by scripting",
+    ConfigurationSaving = {
+        Enabled = true,
+        FolderName = "CartRideConfig",
+        FileName = "Config"
+    },
+    Discord = {
+        Enabled = false,
+        Invite = "noinvitelink",
+        RememberJoins = true
+    },
+    KeySystem = false,
 })
 
-Tab:AddButton({
-    Name = "Spam Up On Carts",
+-- Создаем вкладку
+local MainTab = Window:CreateTab("Основное", "rbxassetid://8950630642")
+
+-- Функция для включения/выключения кнопок On
+local function toggleOnButtons()
+    for _, v in pairs(workspace:GetDescendants()) do
+        if v.Parent.Name == "On" and v.ClassName == "ClickDetector" then
+            if v.Parent.BrickColor ~= BrickColor.new("Dark green") then
+                fireclickdetector(v)
+            end
+            v.Parent:GetPropertyChangedSignal("BrickColor"):Connect(function()
+                if v.Parent.BrickColor ~= BrickColor.new("Dark green") then
+                    fireclickdetector(v)
+                end
+            end)
+        end
+    end
+    
+    workspace.DescendantAdded:Connect(function(descendant)
+        if descendant.Parent.Name == "On" and descendant.ClassName == "ClickDetector" then
+            if descendant.Parent.BrickColor ~= BrickColor.new("Dark green") then
+                fireclickdetector(descendant)
+            end
+            descendant.Parent:GetPropertyChangedSignal("BrickColor"):Connect(function()
+                if descendant.Parent.BrickColor ~= BrickColor.new("Dark green") then
+                    fireclickdetector(descendant)
+                end
+            end)
+        end
+    end)
+end
+
+-- Кнопка спама Up на тележках
+MainTab:CreateButton({
+    Name = "Спам кнопок Up на тележках",
     Callback = function()
-        for i, v in pairs(workspace:GetDescendants()) do
+        -- Включаем кнопки On
+        toggleOnButtons()
+        
+        -- Спамим кнопки Up
+        for _, v in pairs(workspace:GetDescendants()) do
             if v.Parent.Name == "Up" and v.ClassName == "ClickDetector" then
-                spawn(function()
-                    while true do
-                        wait()
-                        if v then
+                task.spawn(function()
+                    while task.wait() do
+                        if v and v.Parent then
                             fireclickdetector(v)
                         else
                             break
                         end
                     end
                 end)
-            elseif v.Parent.Name == "On" and v.ClassName == "ClickDetector" then
-                if v.Parent.BrickColor ~= BrickColor.new("Dark green") then
-                    fireclickdetector(v)
-                end
-                v.Parent:GetPropertyChangedSignal("BrickColor"):Connect(function()
-                    if v.Parent.BrickColor ~= BrickColor.new("Dark green") then
-                        fireclickdetector(v)
-                    end
-                end)
             end
         end
+        
+        -- Отслеживаем новые кнопки
         workspace.DescendantAdded:Connect(function(descendant)
             if descendant.Parent.Name == "Up" and descendant.ClassName == "ClickDetector" then
-                spawn(function()
-                    while true do
-                        wait()
-                        if descendant then
+                task.spawn(function()
+                    while task.wait() do
+                        if descendant and descendant.Parent then
                             fireclickdetector(descendant)
                         else
                             break
                         end
                     end
                 end)
-            elseif descendant.Parent.Name == "On" and descendant.ClassName == "ClickDetector" then
-                if descendant.Parent.BrickColor ~= BrickColor.new("Dark green") then
-                    fireclickdetector(descendant)
-                end
-                descendant.Parent:GetPropertyChangedSignal("BrickColor"):Connect(function()
-                    if descendant.Parent.BrickColor ~= BrickColor.new("Dark green") then
-                        fireclickdetector(descendant)
-                    end
-                end)
             end
         end)
+        
+        Rayfield:Notify({
+            Title = "Успешно",
+            Content = "Спам кнопок Up активирован",
+            Duration = 3,
+            Image = "rbxassetid://8950630642"
+        })
     end
 })
 
-Tab:AddButton({
-    Name = "Spam Down On Carts",
+-- Кнопка спама Down на тележках
+MainTab:CreateButton({
+    Name = "Спам кнопок Down на тележках",
     Callback = function()
-        for i, v in pairs(workspace:GetDescendants()) do
+        -- Включаем кнопки On
+        toggleOnButtons()
+        
+        -- Спамим кнопки Down
+        for _, v in pairs(workspace:GetDescendants()) do
             if v.Parent.Name == "Down" and v.ClassName == "ClickDetector" then
-                spawn(function()
-                    while true do
-                        wait()
-                        if v then
+                task.spawn(function()
+                    while task.wait() do
+                        if v and v.Parent then
                             fireclickdetector(v)
                         else
                             break
                         end
-                    end
-                end)
-            elseif v.Parent.Name == "On" and v.ClassName == "ClickDetector" then
-                if v.Parent.BrickColor ~= BrickColor.new("Dark green") then
-                    fireclickdetector(v)
-                end
-                v.Parent:GetPropertyChangedSignal("BrickColor"):Connect(function()
-                    if v.Parent.BrickColor ~= BrickColor.new("Dark green") then
-                        fireclickdetector(v)
                     end
                 end)
             end
         end
+        
+        -- Отслеживаем новые кнопки
         workspace.DescendantAdded:Connect(function(descendant)
             if descendant.Parent.Name == "Down" and descendant.ClassName == "ClickDetector" then
-                spawn(function()
-                    while true do
-                        wait()
-                        if descendant then
+                task.spawn(function()
+                    while task.wait() do
+                        if descendant and descendant.Parent then
                             fireclickdetector(descendant)
                         else
                             break
                         end
                     end
                 end)
-            elseif descendant.Parent.Name == "On" and descendant.ClassName == "ClickDetector" then
-                if descendant.Parent.BrickColor ~= BrickColor.new("Dark green") then
-                    fireclickdetector(descendant)
-                end
-                descendant.Parent:GetPropertyChangedSignal("BrickColor"):Connect(function()
-                    if descendant.Parent.BrickColor ~= BrickColor.new("Dark green") then
-                        fireclickdetector(descendant)
-                    end
-                end)
             end
         end)
+        
+        Rayfield:Notify({
+            Title = "Успешно",
+            Content = "Спам кнопок Down активирован",
+            Duration = 3,
+            Image = "rbxassetid://8950630642"
+        })
     end
 })
 
-Tab:AddButton({
-    Name = "Mess With Carts",
-    Description = nil,
+-- Переменная для управления автоматическим кликом
+local AutoBreakCarts = false
+
+-- Кнопка для создания хаоса с тележками
+MainTab:CreateButton({
+    Name = "Хаос с тележками",
     Callback = function()
-        getgenv().AutoBreakCarts = true
-        spawn(function()
-            while AutoBreakCarts do 
-                wait(0.3)
-                pcall(function()
-                    for i, v in pairs(workspace:GetDescendants()) do
-                        if v:IsA("ClickDetector") then
-                            fireclickdetector(v)
+        AutoBreakCarts = not AutoBreakCarts
+        
+        if AutoBreakCarts then
+            Rayfield:Notify({
+                Title = "Хаос активирован",
+                Content = "Кликаем все кнопки каждые 0.3 секунды",
+                Duration = 3,
+                Image = "rbxassetid://8950630642"
+            })
+            
+            task.spawn(function()
+                while AutoBreakCarts and task.wait(0.3) do
+                    pcall(function()
+                        for _, v in pairs(workspace:GetDescendants()) do
+                            if v:IsA("ClickDetector") then
+                                fireclickdetector(v)
+                            end
                         end
-                    end
-                end)
-            end
-        end)
+                    end)
+                end
+            end)
+        else
+            Rayfield:Notify({
+                Title = "Хаос деактивирован",
+                Content = "Автоматические клики остановлены",
+                Duration = 3,
+                Image = "rbxassetid://8950630642"
+            })
+        end
     end
 })
 
-OrionLib:Init()
+-- Создаем переключатель для автоматического клика
+MainTab:CreateToggle({
+    Name = "Автоматический клик всех кнопок",
+    CurrentValue = false,
+    Flag = "AutoClickToggle",
+    Callback = function(Value)
+        AutoBreakCarts = Value
+        
+        if Value then
+            task.spawn(function()
+                while AutoBreakCarts and task.wait(0.3) do
+                    pcall(function()
+                        for _, v in pairs(workspace:GetDescendants()) do
+                            if v:IsA("ClickDetector") then
+                                fireclickdetector(v)
+                            end
+                        end
+                    end)
+                end
+            end)
+        end
+    end
+})
+
+-- Вкладка информации
+local InfoTab = Window:CreateTab("Информация", "rbxassetid://8950630642")
+
+InfoTab:CreateParagraph({
+    Title = "Инструкция по использованию",
+    Content = "1. 'Спам кнопок Up' - постоянно нажимает кнопки Up на тележках\n2. 'Спам кнопок Down' - постоянно нажимает кнопки Down на тележках\n3. 'Хаос с тележками' - кликает все кнопки каждые 0.3 секунды\n4. Используйте переключатель для постоянного автоматического клика"
+})
+
+-- Загружаем Rayfield
+Rayfield:LoadConfiguration()
+Rayfield:Notify({
+    Title = "GUI Загружено",
+    Content = "Cart Ride GUI успешно загружен!",
+    Duration = 5,
+    Image = "rbxassetid://8950630642"
+})
