@@ -32,7 +32,7 @@ local Window = WindUI:CreateWindow({
     KeySystem = { 
         Key = { "DLKSQUAD", "ADMIN" },
         Note = "Example Key System.",
-        SaveKey = false,
+        SaveKey = true,
     },
 })
 
