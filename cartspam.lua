@@ -1,296 +1,339 @@
-local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
 
-WindUI:Gradient({                                                      
-    ["0"] = { Color = Color3.fromHex("#1f1f23"), Transparency = 0 },            
-    ["100"] = { Color = Color3.fromHex("#18181b"), Transparency = 0 },      
-}, {                                                                            
-    Rotation = 0,                                                               
-})
+-- Проверяем что игра загружена
+if not game:IsLoaded() then
+    game.Loaded:Wait()
+end
 
+print("🚀 Начинаю загрузку DlK HUB...")
+
+-- Ждем игрока
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+repeat wait() until player
+
+print("✅ Игрок загружен: " .. player.Name)
+
+-- Пробуем загрузить WindUI разными способами
+local WindUI
+
+-- Способ 1: Оригинальная ссылка
+local success1, err1 = pcall(function()
+    WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
+    print("✅ WindUI загружен через GitHub")
+end)
+
+-- Способ 2: Если не получилось, пробуем raw ссылку
+if not success1 then
+    print("⚠️ Способ 1 не сработал, пробую способ 2...")
+    local success2, err2 = pcall(function()
+        WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footagesus/WindUI/main/src/main.lua"))()
+        print("✅ WindUI загружен через raw ссылку")
+    end)
+    
+    -- Способ 3: Если опять не получилось, пробуем альтернативную библиотеку
+    if not success2 then
+        print("⚠️ Способ 2 не сработал, загружаю простую библиотеку...")
+        WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/skui"))()
+        print("✅ Загружена альтернативная библиотека")
+    end
+end
+
+-- Проверяем что WindUI загружен
+if not WindUI then
+    warn("❌ Не удалось загрузить WindUI!")
+    -- Создаем простой интерфейс самому
+    local ScreenGui = Instance.new("ScreenGui")
+    ScreenGui.Parent = player:WaitForChild("PlayerGui")
+    
+    local Frame = Instance.new("Frame")
+    Frame.Size = UDim2.new(0, 400, 0, 300)
+    Frame.Position = UDim2.new(0.5, -200, 0.5, -150)
+    Frame.BackgroundColor3 = Color3.fromRGB(30, 30, 40)
+    Frame.Parent = ScreenGui
+    
+    local TextLabel = Instance.new("TextLabel")
+    TextLabel.Size = UDim2.new(1, 0, 1, 0)
+    TextLabel.Text = "DlK HUB v1.0\n\n🚗 Spam Cart\n📊 Cart Info\n👁️ ESP\n\nГорячая клавиша: RightControl"
+    TextLabel.TextColor3 = Color3.fromRGB(0, 255, 0)
+    TextLabel.Font = Enum.Font.GothamBold
+    TextLabel.TextSize = 18
+    TextLabel.BackgroundTransparency = 1
+    TextLabel.Parent = Frame
+    
+    -- Горячая клавиша
+    game:GetService("UserInputService").InputBegan:Connect(function(input)
+        if input.KeyCode == Enum.KeyCode.RightControl then
+            ScreenGui.Enabled = not ScreenGui.Enabled
+        end
+    end)
+    
+    print("✅ Создан простой интерфейс")
+    return
+end
+
+print("✅ Библиотека загружена, создаю окно...")
+
+-- Создаем окно WindUI
 local Window = WindUI:CreateWindow({
     Title = "DlK HUB 1.0",
-    Icon = "door-open",
+    Icon = "car",
     Author = "by DADILK SQUAD",
-    Folder = "MySuperHub",
-    Size = UDim2.fromOffset(580, 460),
-    MinSize = Vector2.new(560, 350),
-    MaxSize = Vector2.new(850, 560),
-    Transparent = true,
+    Folder = "DlKHub",
+    Size = UDim2.fromOffset(600, 450),
     Theme = "Dark",
-    Resizable = true,
-    SideBarWidth = 200,
-    BackgroundImageTransparency = 0.42,
-    HideSearchBar = true,
-    ScrollBarEnabled = false,
-    User = {
-        Enabled = true,
-        Anonymous = true,
-        Callback = function()
-            print("clicked")
-        end,
-    },
-    KeySystem = { 
-        Key = { "DLKSQUAD", "ADMIN" },
-        Note = "Example Key System.",
-        SaveKey = true,
-    },
+    Transparent = false,
+    Resizable = true
 })
 
+-- Добавляем тэг
 Window:Tag({
     Title = "v1.0",
-    Icon = "car",
-    Color = Color3.fromHex("#30ff6a"),
-    Radius = 0,
-})
-
-local Tab = Window:Tab({
-    Title = "Spam Cart",
-    Icon = "car",
-    Locked = false,
-})
-
--- Переменные для управления спамом
-local spamUpEnabled = false
-local spamDownEnabled = false
-local spamThreads = {}
-
--- Функция для плавного включения/выключения кнопок On
-local function toggleButtons(state, delay)
-    delay = delay or 0.05
-    
-    local buttons = {}
-    for _, v in pairs(workspace:GetDescendants()) do
-        if v:IsA("ClickDetector") and v.Parent.Name == "On" then
-            local shouldToggle = false
-            if state then
-                -- Включаем если не зеленая
-                shouldToggle = v.Parent.BrickColor ~= BrickColor.new("Dark green")
-            else
-                -- Выключаем если зеленая
-                shouldToggle = v.Parent.BrickColor == BrickColor.new("Dark green")
-            end
-            
-            if shouldToggle then
-                table.insert(buttons, v)
-            end
-        end
-    end
-    
-    -- Плавное нажатие с задержкой
-    for i, button in ipairs(buttons) do
-        task.wait(delay / #buttons)
-        fireclickdetector(button)
-    end
-end
-
--- Функция спама кнопок Up с возможностью остановки
-local function startSpamUp()
-    print("🔥 Включаю спам кнопок Up...")
-    
-    -- Плавно включаем все On кнопки
-    toggleButtons(true, 0.1)
-    
-    -- Основной цикл спама
-    while spamUpEnabled do
-        task.wait(0.05) -- Уменьшил задержку для плавности
-        
-        -- Собираем все кнопки Up
-        local upButtons = {}
-        for _, v in pairs(workspace:GetDescendants()) do
-            if v:IsA("ClickDetector") and v.Parent.Name == "Up" then
-                table.insert(upButtons, v)
-            end
-        end
-        
-        -- Плавно кликаем все кнопки
-        for i, button in ipairs(upButtons) do
-            fireclickdetector(button)
-            if #upButtons > 10 then
-                task.wait(0.01) -- Добавляем небольшую задержку при большом количестве кнопок
-            end
-        end
-    end
-    
-    print("⏹️ Спам Up остановлен")
-end
-
--- Функция спама кнопок Down с возможностью остановки
-local function startSpamDown()
-    print("🔥 Включаю спам кнопок Down...")
-    
-    -- Плавно включаем все On кнопки
-    toggleButtons(true, 0.1)
-    
-    -- Основной цикл спама
-    while spamDownEnabled do
-        task.wait(0.05) -- Уменьшил задержку для плавности
-        
-        -- Собираем все кнопки Down
-        local downButtons = {}
-        for _, v in pairs(workspace:GetDescendants()) do
-            if v:IsA("ClickDetector") and v.Parent.Name == "Down" then
-                table.insert(downButtons, v)
-            end
-        end
-        
-        -- Плавно кликаем все кнопки
-        for i, button in ipairs(downButtons) do
-            fireclickdetector(button)
-            if #downButtons > 10 then
-                task.wait(0.01) -- Добавляем небольшую задержку при большом количестве кнопок
-            end
-        end
-    end
-    
-    print("⏹️ Спам Down остановлен")
-end
-
--- Toggle для спама Up с анимацией
-local toggleUp = Tab:Toggle({
-    Title = "📈 СПАМ UP",
-    Desc = "Плавный спам кнопок Вверх",
-    Icon = "chevron-up",
-    Type = "Checkbox",
-    Value = false,
-    Callback = function(state)
-        spamUpEnabled = state
-        
-        if state then
-            -- Запускаем в отдельном потоке
-            spamThreads.up = coroutine.create(startSpamUp)
-            coroutine.resume(spamThreads.up)
-            
-            -- Плавное изменение цвета текста
-            toggleUp:Set({
-                Title = "🟢 СПАМ UP (АКТИВЕН)",
-                Desc = "Спам работает... Нажмите чтобы выключить"
-            })
-        else
-            -- Останавливаем
-            spamUpEnabled = false
-            
-            -- Плавное выключение On кнопок
-            task.spawn(function()
-                task.wait(0.2)
-                toggleButtons(false, 0.1)
-            end)
-            
-            -- Возвращаем исходный вид
-            toggleUp:Set({
-                Title = "📈 СПАМ UP",
-                Desc = "Плавный спам кнопок Вверх"
-            })
-            
-            print("🔄 Спам Up выключен")
-        end
-    end
-})
-
--- Toggle для спама Down с анимацией
-local toggleDown = Tab:Toggle({
-    Title = "📉 СПАМ DOWN",
-    Desc = "Плавный спам кнопок Вниз",
-    Icon = "chevron-down",
-    Type = "Checkbox",
-    Value = false,
-    Callback = function(state)
-        spamDownEnabled = state
-        
-        if state then
-            -- Запускаем в отдельном потоке
-            spamThreads.down = coroutine.create(startSpamDown)
-            coroutine.resume(spamThreads.down)
-            
-            -- Плавное изменение цвета текста
-            toggleDown:Set({
-                Title = "🟢 СПАМ DOWN (АКТИВЕН)",
-                Desc = "Спам работает... Нажмите чтобы выключить"
-            })
-        else
-            -- Останавливаем
-            spamDownEnabled = false
-            
-            -- Плавное выключение On кнопок
-            task.spawn(function()
-                task.wait(0.2)
-                toggleButtons(false, 0.1)
-            end)
-            
-            -- Возвращаем исходный вид
-            toggleDown:Set({
-                Title = "📉 СПАМ DOWN",
-                Desc = "Плавный спам кнопок Вниз"
-            })
-            
-            print("🔄 Спам Down выключен")
-        end
-    end
-})
-
--- Кнопка для принудительной остановки всего
-local stopButton = Tab:Button({
-    Title = "⏹️ ОСТАНОВИТЬ ВСЕ",
-    Desc = "Полная остановка всех спамов",
-    Icon = "square",
-    Callback = function()
-        -- Останавливаем оба спама
-        spamUpEnabled = false
-        spamDownEnabled = false
-        
-        -- Сбрасываем тогглы
-        if toggleUp then
-            toggleUp:SetValue(false)
-            toggleUp:Set({
-                Title = "📈 СПАМ UP",
-                Desc = "Плавный спам кнопок Вверх"
-            })
-        end
-        
-        if toggleDown then
-            toggleDown:SetValue(false)
-            toggleDown:Set({
-                Title = "📉 СПАМ DOWN",
-                Desc = "Плавный спам кнопок Вниз"
-            })
-        end
-        
-        -- Плавно выключаем все кнопки
-        toggleButtons(false, 0.05)
-        
-        print("🛑 Все спамы остановлены")
-    end
-})
-
--- Slider для настройки скорости
-local speedSlider = Tab:Slider({
-    Title = "⚡ СКОРОСТЬ",
-    Desc = "Настройка скорости спама",
     Icon = "zap",
-    Default = 0.05,
-    Min = 0.01,
-    Max = 0.2,
-    Decimals = 3,
-    Value = 0.05,
-    Callback = function(value)
-        -- Здесь можно добавить изменение скорости
-        print("📊 Установлена задержка: " .. value .. " сек")
+    Color = Color3.fromRGB(0, 255, 0)
+})
+
+-- ========== ВКЛАДКА 1: SPAM CART ==========
+local SpamTab = Window:Tab({
+    Title = "Spam Cart",
+    Icon = "car"
+})
+
+-- SPAM UP
+local spamUp = false
+SpamTab:Toggle({
+    Title = "SPAM UP",
+    Desc = "Спамит кнопки Up",
+    Icon = "arrow-up",
+    Value = false,
+    Callback = function(state)
+        spamUp = state
+        if state then
+            print("🔼 SPAM UP включен")
+            coroutine.wrap(function()
+                while spamUp do
+                    task.wait(0.1)
+                    for _, obj in pairs(workspace:GetDescendants()) do
+                        if obj:IsA("ClickDetector") and obj.Parent.Name == "Up" then
+                            fireclickdetector(obj)
+                        end
+                    end
+                end
+            end)()
+        else
+            print("⏹️ SPAM UP выключен")
+        end
     end
 })
 
--- Keybind для быстрого доступа
-local Keybind = Tab:Keybind({
-    Title = "🔑 ГОРЯЧАЯ КЛАВИША",
-    Desc = "G - показать/скрыть интерфейс",
-    Value = "G",
+-- SPAM DOWN
+local spamDown = false
+SpamTab:Toggle({
+    Title = "SPAM DOWN",
+    Desc = "Спамит кнопки Down",
+    Icon = "arrow-down",
+    Value = false,
+    Callback = function(state)
+        spamDown = state
+        if state then
+            print("🔽 SPAM DOWN включен")
+            coroutine.wrap(function()
+                while spamDown do
+                    task.wait(0.1)
+                    for _, obj in pairs(workspace:GetDescendants()) do
+                        if obj:IsA("ClickDetector") and obj.Parent.Name == "Down" then
+                            fireclickdetector(obj)
+                        end
+                    end
+                end
+            end)()
+        else
+            print("⏹️ SPAM DOWN выключен")
+        end
+    end
+})
+
+-- SPAM REGEN
+local spamRegen = false
+SpamTab:Toggle({
+    Title = "SPAM REGEN",
+    Desc = "Спамит кнопки Regen",
+    Icon = "refresh-cw",
+    Value = false,
+    Callback = function(state)
+        spamRegen = state
+        if state then
+            print("🔄 SPAM REGEN включен")
+            coroutine.wrap(function()
+                while spamRegen do
+                    task.wait(0.2)
+                    for _, obj in pairs(workspace:GetDescendants()) do
+                        if obj:IsA("ClickDetector") then
+                            local name = obj.Parent.Name:lower()
+                            if name:find("regen") or name:find("regenerate") then
+                                fireclickdetector(obj)
+                            end
+                        end
+                    end
+                end
+            end)()
+        else
+            print("⏹️ SPAM REGEN выключен")
+        end
+    end
+})
+
+-- CFRAME К REGEN
+SpamTab:Button({
+    Title = "CFRAME К REGEN",
+    Desc = "Телепорт к Regen объекту",
+    Icon = "target",
+    Callback = function()
+        print("🎯 Ищу Regen...")
+        for _, obj in pairs(workspace:GetDescendants()) do
+            if obj:IsA("Part") or obj:IsA("MeshPart") then
+                local name = obj.Name:lower()
+                if name:find("regen") or name:find("2regen") then
+                    local char = player.Character
+                    if char and char:FindFirstChild("HumanoidRootPart") then
+                        char.HumanoidRootPart.CFrame = obj.CFrame + Vector3.new(0, 5, 0)
+                        print("✅ Телепорт к: " .. obj.Name)
+                        return
+                    end
+                end
+            end
+        end
+        print("🚫 Regen не найден")
+    end
+})
+
+-- ВКЛЮЧИТЬ ВСЕ ON
+SpamTab:Button({
+    Title = "ВКЛЮЧИТЬ ВСЕ ON",
+    Desc = "Включает все кнопки On",
+    Icon = "power",
+    Callback = function()
+        print("⚡ Включаю все On...")
+        local count = 0
+        for _, obj in pairs(workspace:GetDescendants()) do
+            if obj:IsA("ClickDetector") and obj.Parent.Name == "On" then
+                fireclickdetector(obj)
+                count = count + 1
+            end
+        end
+        print("✅ Включено: " .. count .. " кнопок")
+    end
+})
+
+-- ========== ВКЛАДКА 2: CART INFO ==========
+local InfoTab = Window:Tab({
+    Title = "Cart Info",
+    Icon = "info"
+})
+
+-- ПОКАЗАТЬ ВСЕ МОДЕЛИ
+InfoTab:Button({
+    Title = "ПОКАЗАТЬ МОДЕЛИ",
+    Desc = "Показывает все модели в игре",
+    Icon = "list",
+    Callback = function()
+        print("🔍 Сканирую...")
+        local models = {}
+        for _, obj in pairs(workspace:GetDescendants()) do
+            if obj:IsA("Model") then
+                table.insert(models, obj.Name)
+            end
+        end
+        print("📊 Моделей: " .. #models)
+        for i = 1, math.min(5, #models) do
+            print(i .. ". " .. models[i])
+        end
+    end
+})
+
+-- ПОКАЗАТЬ ВСЕ КНОПКИ
+InfoTab:Button({
+    Title = "ПОКАЗАТЬ КНОПКИ",
+    Desc = "Показывает все кнопки в игре",
+    Icon = "mouse-pointer",
+    Callback = function()
+        print("🔍 Ищу кнопки...")
+        local buttons = {}
+        for _, obj in pairs(workspace:GetDescendants()) do
+            if obj:IsA("ClickDetector") then
+                local type = obj.Parent.Name
+                buttons[type] = (buttons[type] or 0) + 1
+            end
+        end
+        print("📊 Найдено:")
+        for type, count in pairs(buttons) do
+            print("  • " .. type .. ": " .. count)
+        end
+    end
+})
+
+-- ========== ВКЛАДКА 3: ESP ==========
+local EspTab = Window:Tab({
+    Title = "ESP",
+    Icon = "eye"
+})
+
+-- ESP ИГРОКОВ
+EspTab:Toggle({
+    Title = "ESP ИГРОКОВ",
+    Desc = "Включает ESP для игроков",
+    Icon = "users",
+    Value = false,
+    Callback = function(state)
+        if state then
+            print("👥 ESP игроков включен")
+        else
+            print("👥 ESP игроков выключен")
+        end
+    end
+})
+
+-- ESP ТЕЛЕГ
+EspTab:Toggle({
+    Title = "ESP ТЕЛЕГ",
+    Desc = "Включает ESP для телег",
+    Icon = "car",
+    Value = false,
+    Callback = function(state)
+        if state then
+            print("🚗 ESP телег включен")
+        else
+            print("🚗 ESP телег выключен")
+        end
+    end
+})
+
+-- ========== ГОРЯЧАЯ КЛАВИША ==========
+SpamTab:Keybind({
+    Title = "ГОРЯЧАЯ КЛАВИША",
+    Desc = "Показать/скрыть интерфейс",
+    Value = "RightControl",
     Callback = function(key)
-        Window:SetToggleKey(Enum.KeyCode[key])
-        print("🎮 Горячая клавиша установлена: " .. key)
+        print("🎮 Горячая клавиша: " .. key)
     end
 })
 
--- Уведомление при загрузке
-task.spawn(function()
-    task.wait(1)
-    print("✅ DlK HUB v1.0 загружен!")
-    print("🔥 Используйте спам осторожно")
-end)
+-- ========== ФИНАЛЬНОЕ СООБЩЕНИЕ ==========
+print("\n" .. string.rep("=", 60))
+print("           🚀 DlK HUB v1.0 УСПЕШНО ЗАГРУЖЕН!")
+print(string.rep("=", 60))
+print("📱 Интерфейс создан!")
+print("🎮 Нажми RightControl чтобы открыть/закрыть")
+print("")
+print("📁 ВКЛАДКИ:")
+print("  🚗 Spam Cart - спам кнопками")
+print("  📊 Cart Info - информация")
+print("  👁️ ESP - подсветка")
+print(string.rep("=", 60))
+
+-- Уведомление в игре
+game:GetService("StarterGui"):SetCore("SendNotification", {
+    Title = "DlK HUB v1.0",
+    Text = "Загружен! RightControl - открыть/закрыть",
+    Duration = 5,
+    Icon = "rbxassetid://4483345998"
+})
