@@ -75,7 +75,7 @@ print("✅ Библиотека загружена, создаю окно...")
 
 -- Создаем окно WindUI
 local Window = WindUI:CreateWindow({
-    Title = "DlK HUB 1.0",
+    Title = "DlK HUB 1.1(beta)",
     Icon = "car",
     Author = "by DADILK SQUAD",
     Folder = "DlKHub",
@@ -87,7 +87,7 @@ local Window = WindUI:CreateWindow({
 
 -- Добавляем тэг
 Window:Tag({
-    Title = "v1.0",
+    Title = "v1.1",
     Icon = "zap",
     Color = Color3.fromRGB(0, 255, 0)
 })
