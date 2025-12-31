@@ -1,23 +1,19 @@
--- LocalScript (поместить в StarterGui)
 local Players = game:GetService("Players")
 local UserInputService = game:GetService("UserInputService")
 
 local player = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
 
--- Настройки
 local Settings = {
 	touchEnabled = true,
-	rotationAngle = -90  -- Влево
+	blinkEnabled = true
 }
 
--- Создаем GUI
 local screenGui = Instance.new("ScreenGui")
 screenGui.Name = "WallHopSystem"
 screenGui.ResetOnSpawn = false
 screenGui.Parent = playerGui
 
--- === МЕНЮ НАСТРОЕК ===
 local menuButton = Instance.new("TextButton")
 menuButton.Name = "MenuButton"
 menuButton.Size = UDim2.new(0, 50, 0, 50)
@@ -31,13 +27,11 @@ menuButton.Font = Enum.Font.FredokaOne
 local menuCorner = Instance.new("UICorner")
 menuCorner.CornerRadius = UDim.new(0, 10)
 menuCorner.Parent = menuButton
-
 menuButton.Parent = screenGui
 
--- Панель меню
 local menuPanel = Instance.new("Frame")
 menuPanel.Name = "MenuPanel"
-menuPanel.Size = UDim2.new(0, 200, 0, 120)
+menuPanel.Size = UDim2.new(0, 200, 0, 150)
 menuPanel.Position = UDim2.new(1, -210, 0, 70)
 menuPanel.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
 menuPanel.Visible = false
@@ -46,18 +40,16 @@ local menuPanelCorner = Instance.new("UICorner")
 menuPanelCorner.CornerRadius = UDim.new(0, 10)
 menuPanelCorner.Parent = menuPanel
 
--- Заголовок
 local menuTitle = Instance.new("TextLabel")
 menuTitle.Name = "Title"
 menuTitle.Size = UDim2.new(1, 0, 0, 40)
 menuTitle.BackgroundTransparency = 1
-menuTitle.Text = "НАСТРОЙКИ"
+menuTitle.Text = "SETTINGS"
 menuTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 menuTitle.TextSize = 18
 menuTitle.Font = Enum.Font.FredokaOne
 menuTitle.Parent = menuPanel
 
--- Переключатель Touch
 local touchToggleFrame = Instance.new("Frame")
 touchToggleFrame.Name = "TouchToggle"
 touchToggleFrame.Size = UDim2.new(1, -20, 0, 40)
@@ -68,7 +60,7 @@ local touchLabel = Instance.new("TextLabel")
 touchLabel.Name = "Label"
 touchLabel.Size = UDim2.new(0.7, 0, 1, 0)
 touchLabel.BackgroundTransparency = 1
-touchLabel.Text = "ДВИГАТЬ КНОПКУ"
+touchLabel.Text = "MOVE BUTTON"
 touchLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 touchLabel.TextSize = 16
 touchLabel.TextXAlignment = Enum.TextXAlignment.Left
@@ -80,7 +72,7 @@ touchToggle.Name = "Toggle"
 touchToggle.Size = UDim2.new(0, 60, 0, 30)
 touchToggle.Position = UDim2.new(1, -60, 0.5, -15)
 touchToggle.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
-touchToggle.Text = "ДА"
+touchToggle.Text = "ON"
 touchToggle.TextColor3 = Color3.fromRGB(255, 255, 255)
 touchToggle.TextSize = 14
 touchToggle.Font = Enum.Font.GothamBold
@@ -88,12 +80,43 @@ touchToggle.Font = Enum.Font.GothamBold
 local toggleCorner = Instance.new("UICorner")
 toggleCorner.CornerRadius = UDim.new(0, 15)
 toggleCorner.Parent = touchToggle
-
 touchToggle.Parent = touchToggleFrame
 touchToggleFrame.Parent = menuPanel
+
+local blinkToggleFrame = Instance.new("Frame")
+blinkToggleFrame.Name = "BlinkToggle"
+blinkToggleFrame.Size = UDim2.new(1, -20, 0, 40)
+blinkToggleFrame.Position = UDim2.new(0, 10, 0, 100)
+blinkToggleFrame.BackgroundTransparency = 1
+
+local blinkLabel = Instance.new("TextLabel")
+blinkLabel.Name = "Label"
+blinkLabel.Size = UDim2.new(0.7, 0, 1, 0)
+blinkLabel.BackgroundTransparency = 1
+blinkLabel.Text = "BLINK AFTER JUMP"
+blinkLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+blinkLabel.TextSize = 16
+blinkLabel.TextXAlignment = Enum.TextXAlignment.Left
+blinkLabel.Font = Enum.Font.Gotham
+blinkLabel.Parent = blinkToggleFrame
+
+local blinkToggle = Instance.new("TextButton")
+blinkToggle.Name = "Toggle"
+blinkToggle.Size = UDim2.new(0, 60, 0, 30)
+blinkToggle.Position = UDim2.new(1, -60, 0.5, -15)
+blinkToggle.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
+blinkToggle.Text = "ON"
+blinkToggle.TextColor3 = Color3.fromRGB(255, 255, 255)
+blinkToggle.TextSize = 14
+blinkToggle.Font = Enum.Font.GothamBold
+
+local blinkToggleCorner = Instance.new("UICorner")
+blinkToggleCorner.CornerRadius = UDim.new(0, 15)
+blinkToggleCorner.Parent = blinkToggle
+blinkToggle.Parent = blinkToggleFrame
+blinkToggleFrame.Parent = menuPanel
 menuPanel.Parent = screenGui
 
--- === КНОПКА HOP ===
 local hopButton = Instance.new("TextButton")
 hopButton.Name = "HopButton"
 hopButton.Size = UDim2.new(0, 100, 0, 100)
@@ -108,83 +131,89 @@ hopButton.BackgroundTransparency = 0.3
 local hopCorner = Instance.new("UICorner")
 hopCorner.CornerRadius = UDim.new(0, 20)
 hopCorner.Parent = hopButton
-
 hopButton.Parent = screenGui
 
--- === ПЕРЕМЕННЫЕ ===
 local originalCFrame
 local isButtonPressed = false
 local dragStartPosition
 
--- === ФУНКЦИИ КАМЕРЫ (РЕЗКИЕ) ===
 local function rotateCamera()
 	local camera = workspace.CurrentCamera
 	if not camera then return end
 	
 	originalCFrame = camera.CFrame
-	-- РЕЗКИЙ ПОВОРОТ БЕЗ АНИМАЦИИ
-	camera.CFrame = camera.CFrame * CFrame.Angles(0, math.rad(Settings.rotationAngle), 0)
+	camera.CFrame = camera.CFrame * CFrame.Angles(0, math.rad(-90), 0)
 end
 
 local function returnCamera()
 	local camera = workspace.CurrentCamera
 	if not camera or not originalCFrame then return end
 	
-	-- РЕЗКИЙ ВОЗВРАТ БЕЗ АНИМАЦИИ
 	camera.CFrame = originalCFrame
 	originalCFrame = nil
 end
 
--- === УПРАВЛЕНИЕ TOUCH ===
+local function blinkAfterJump()
+	if not Settings.blinkEnabled then return end
+	
+	-- Ждем 0.35 секунды (было 0.5)
+	wait(0.35)
+	
+	-- Меняем цвет на зеленый
+	local originalColor = hopButton.BackgroundColor3
+	hopButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+	
+	-- Ждем 0.10 секунды
+	wait(0.10)
+	
+	-- Возвращаем цвет
+	hopButton.BackgroundColor3 = originalColor
+end
+
 local function enableTouchControl()
 	Settings.touchEnabled = true
 	touchToggle.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
-	touchToggle.Text = "ДА"
+	touchToggle.Text = "ON"
 	hopButton.BackgroundColor3 = Color3.fromRGB(255, 50, 50)
 end
 
 local function disableTouchControl()
 	Settings.touchEnabled = false
 	touchToggle.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
-	touchToggle.Text = "НЕТ"
-	hopButton.BackgroundColor3 = Color3.fromRGB(100, 100, 100) -- Серый когда не двигается
+	touchToggle.Text = "OFF"
+	hopButton.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
 end
 
--- === ФУНКЦИЯ ПРОВЕРКИ КАСАНИЯ КНОПКИ ===
-local function isTouchOnButton(inputPosition)
-	local buttonAbsPos = hopButton.AbsolutePosition
-	local buttonSize = hopButton.AbsoluteSize
-	
-	return inputPosition.X >= buttonAbsPos.X and 
-		   inputPosition.X <= buttonAbsPos.X + buttonSize.X and
-		   inputPosition.Y >= buttonAbsPos.Y and 
-		   inputPosition.Y <= buttonAbsPos.Y + buttonSize.Y
+local function enableBlink()
+	Settings.blinkEnabled = true
+	blinkToggle.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
+	blinkToggle.Text = "ON"
 end
 
--- === ОБРАБОТЧИКИ HOP КНОПКИ ===
+local function disableBlink()
+	Settings.blinkEnabled = false
+	blinkToggle.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
+	blinkToggle.Text = "OFF"
+end
+
 hopButton.InputBegan:Connect(function(input)
 	if input.UserInputType == Enum.UserInputType.MouseButton1 or 
 	   input.UserInputType == Enum.UserInputType.Touch then
 		
 		isButtonPressed = true
 		dragStartPosition = input.Position
-		-- РЕЗКИЙ ПОВОРОТ СРАЗУ
 		rotateCamera()
 	end
 end)
 
 hopButton.InputChanged:Connect(function(input)
-	if not Settings.touchEnabled then return end -- НЕ ДВИГАЕМ если выключено
+	if not Settings.touchEnabled then return end
 	
-	-- ПРОВЕРЯЕМ что это именно перетаскивание кнопки, а не случайное касание
 	if isButtonPressed and (input.UserInputType == Enum.UserInputType.MouseMovement or 
 	   input.UserInputType == Enum.UserInputType.Touch) then
 		
-		-- ДВИГАЕМ КНОПКУ РЕЗКО только если включено
 		local delta = input.Position - dragStartPosition
 		local currentPos = hopButton.Position
-		
-		-- Ограничиваем движение кнопки в пределах экрана
 		local screenSize = screenGui.AbsoluteSize
 		local buttonSize = hopButton.AbsoluteSize
 		
@@ -201,36 +230,21 @@ hopButton.InputEnded:Connect(function(input)
 	   input.UserInputType == Enum.UserInputType.Touch then
 		
 		isButtonPressed = false
-		-- РЕЗКИЙ ВОЗВРАТ СРАЗУ
 		returnCamera()
 	end
 end)
 
--- Глобальный обработчик для предотвращения ложных срабатываний
 UserInputService.InputBegan:Connect(function(input, processed)
-	-- Если касание обработано другим элементом UI, игнорируем
 	if processed then return end
 	
-	-- Только для касаний
 	if input.UserInputType == Enum.UserInputType.Touch then
 		local touchPos = input.Position
+		local buttonAbsPos = hopButton.AbsolutePosition
+		local buttonSize = hopButton.AbsoluteSize
 		
-		-- Если касание НЕ на кнопке, сбрасываем флаги
-		if not isTouchOnButton(touchPos) then
+		if not (touchPos.X >= buttonAbsPos.X and touchPos.X <= buttonAbsPos.X + buttonSize.X and
+				touchPos.Y >= buttonAbsPos.Y and touchPos.Y <= buttonAbsPos.Y + buttonSize.Y) then
 			isButtonPressed = false
-		end
-	end
-end)
-
-UserInputService.InputChanged:Connect(function(input, processed)
-	if processed then return end
-	
-	-- Если палец двигается и мы НЕ нажимали на кнопку, игнорируем
-	if (input.UserInputType == Enum.UserInputType.MouseMovement or 
-		input.UserInputType == Enum.UserInputType.Touch) then
-		
-		if not isButtonPressed then
-			return
 		end
 	end
 end)
@@ -241,7 +255,6 @@ UserInputService.InputEnded:Connect(function(input, processed)
 	if input.UserInputType == Enum.UserInputType.MouseButton1 or 
 	   input.UserInputType == Enum.UserInputType.Touch then
 		
-		-- Если кнопка была нажата, возвращаем камеру
 		if isButtonPressed then
 			returnCamera()
 			isButtonPressed = false
@@ -249,9 +262,7 @@ UserInputService.InputEnded:Connect(function(input, processed)
 	end
 end)
 
--- === ОБРАБОТЧИКИ МЕНЮ ===
 local menuOpen = false
-
 menuButton.MouseButton1Click:Connect(function()
 	menuOpen = not menuOpen
 	menuPanel.Visible = menuOpen
@@ -265,7 +276,14 @@ touchToggle.MouseButton1Click:Connect(function()
 	end
 end)
 
--- Закрытие меню при клике вне его
+blinkToggle.MouseButton1Click:Connect(function()
+	if Settings.blinkEnabled then
+		disableBlink()
+	else
+		enableBlink()
+	end
+end)
+
 UserInputService.InputBegan:Connect(function(input, processed)
 	if processed then return end
 	
@@ -276,7 +294,6 @@ UserInputService.InputBegan:Connect(function(input, processed)
 		local buttonAbsPos = menuButton.AbsolutePosition
 		local buttonSize = menuButton.AbsoluteSize
 		
-		-- Проверяем клик вне меню и вне кнопки меню
 		if (mousePos.X < menuAbsPos.X or mousePos.X > menuAbsPos.X + menuSize.X or
 			mousePos.Y < menuAbsPos.Y or mousePos.Y > menuAbsPos.Y + menuSize.Y) and
 		   (mousePos.X < buttonAbsPos.X or mousePos.X > buttonAbsPos.X + buttonSize.X or
@@ -288,10 +305,44 @@ UserInputService.InputBegan:Connect(function(input, processed)
 	end
 end)
 
--- === ИНИЦИАЛИЗАЦИЯ ===
 enableTouchControl()
+enableBlink()
 
-print("✅ Wall Hop System загружен!")
-print("⚙ - меню настроек")
-print("HOP - кнопка управления")
-print("⚠ Теперь кнопка не срабатывает при случайных касаниях!")
+print("✅ Wall Hop System loaded!")
+print("⚙ - settings menu")
+print("HOP - camera rotate button (90°)")
+print("JUMP → 0.35s wait → HOP blinks green for 0.10s")
+
+-- Отслеживаем прыжок
+local character = player.Character
+if character then
+	local humanoid = character:FindFirstChild("Humanoid")
+	if humanoid then
+		humanoid.StateChanged:Connect(function(oldState, newState)
+			if newState == Enum.HumanoidStateType.Jumping then
+				coroutine.wrap(blinkAfterJump)()
+			end
+		end)
+	end
+end
+
+player.CharacterAdded:Connect(function(newCharacter)
+	task.wait(1)
+	local humanoid = newCharacter:FindFirstChild("Humanoid")
+	if humanoid then
+		humanoid.StateChanged:Connect(function(oldState, newState)
+			if newState == Enum.HumanoidStateType.Jumping then
+				coroutine.wrap(blinkAfterJump)()
+			end
+		end)
+	end
+end)
+
+-- Пробел для ПК
+UserInputService.InputBegan:Connect(function(input, processed)
+	if processed then return end
+	
+	if input.KeyCode == Enum.KeyCode.Space then
+		coroutine.wrap(blinkAfterJump)()
+	end
+end)
