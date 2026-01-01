@@ -6,7 +6,8 @@ local playerGui = player:WaitForChild("PlayerGui")
 
 local Settings = {
 	touchEnabled = true,
-	blinkEnabled = true
+	blinkEnabled = true,
+	shiftLockEnabled = false
 }
 
 local screenGui = Instance.new("ScreenGui")
@@ -31,8 +32,8 @@ menuButton.Parent = screenGui
 
 local menuPanel = Instance.new("Frame")
 menuPanel.Name = "MenuPanel"
-menuPanel.Size = UDim2.new(0, 200, 0, 150)
-menuPanel.Position = UDim2.new(1, -210, 0, 70)
+menuPanel.Size = UDim2.new(0, 220, 0, 210)
+menuPanel.Position = UDim2.new(1, -230, 0, 70)
 menuPanel.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
 menuPanel.Visible = false
 
@@ -115,6 +116,39 @@ blinkToggleCorner.CornerRadius = UDim.new(0, 15)
 blinkToggleCorner.Parent = blinkToggle
 blinkToggle.Parent = blinkToggleFrame
 blinkToggleFrame.Parent = menuPanel
+
+local shiftLockToggleFrame = Instance.new("Frame")
+shiftLockToggleFrame.Name = "ShiftLockToggle"
+shiftLockToggleFrame.Size = UDim2.new(1, -20, 0, 40)
+shiftLockToggleFrame.Position = UDim2.new(0, 10, 0, 150)
+shiftLockToggleFrame.BackgroundTransparency = 1
+
+local shiftLockLabel = Instance.new("TextLabel")
+shiftLockLabel.Name = "Label"
+shiftLockLabel.Size = UDim2.new(0.7, 0, 1, 0)
+shiftLockLabel.BackgroundTransparency = 1
+shiftLockLabel.Text = "SHIFT LOCK"
+shiftLockLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+shiftLockLabel.TextSize = 16
+shiftLockLabel.TextXAlignment = Enum.TextXAlignment.Left
+shiftLockLabel.Font = Enum.Font.Gotham
+shiftLockLabel.Parent = shiftLockToggleFrame
+
+local shiftLockToggle = Instance.new("TextButton")
+shiftLockToggle.Name = "Toggle"
+shiftLockToggle.Size = UDim2.new(0, 60, 0, 30)
+shiftLockToggle.Position = UDim2.new(1, -60, 0.5, -15)
+shiftLockToggle.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
+shiftLockToggle.Text = "OFF"
+shiftLockToggle.TextColor3 = Color3.fromRGB(255, 255, 255)
+shiftLockToggle.TextSize = 14
+shiftLockToggle.Font = Enum.Font.GothamBold
+
+local shiftLockToggleCorner = Instance.new("UICorner")
+shiftLockToggleCorner.CornerRadius = UDim.new(0, 15)
+shiftLockToggleCorner.Parent = shiftLockToggle
+shiftLockToggle.Parent = shiftLockToggleFrame
+shiftLockToggleFrame.Parent = menuPanel
 menuPanel.Parent = screenGui
 
 local hopButton = Instance.new("TextButton")
@@ -136,6 +170,7 @@ hopButton.Parent = screenGui
 local originalCFrame
 local isButtonPressed = false
 local dragStartPosition
+local lastBlinkEndTime = 0
 
 local function rotateCamera()
 	local camera = workspace.CurrentCamera
@@ -156,18 +191,27 @@ end
 local function blinkAfterJump()
 	if not Settings.blinkEnabled then return end
 	
-	-- Ждем 0.35 секунды (было 0.5)
-	wait(0.35)
+	-- Ждем 0.35 секунды
+	task.wait(0.35)
+	
+	-- Запоминаем время начала мигания
+	local blinkStartTime = tick()
 	
 	-- Меняем цвет на зеленый
-	local originalColor = hopButton.BackgroundColor3
 	hopButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
 	
 	-- Ждем 0.10 секунды
-	wait(0.10)
+	task.wait(0.10)
 	
-	-- Возвращаем цвет
-	hopButton.BackgroundColor3 = originalColor
+	-- Возвращаем цвет только если это наше мигание
+	if tick() - blinkStartTime >= 0.09 then -- 0.09 чтобы учесть задержки
+		if Settings.touchEnabled then
+			hopButton.BackgroundColor3 = Color3.fromRGB(255, 50, 50)
+		else
+			hopButton.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
+		end
+		lastBlinkEndTime = tick()
+	end
 end
 
 local function enableTouchControl()
@@ -194,6 +238,43 @@ local function disableBlink()
 	Settings.blinkEnabled = false
 	blinkToggle.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
 	blinkToggle.Text = "OFF"
+	
+	-- Сразу возвращаем цвет
+	if Settings.touchEnabled then
+		hopButton.BackgroundColor3 = Color3.fromRGB(255, 50, 50)
+	else
+		hopButton.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
+	end
+end
+
+local function enableShiftLock()
+	Settings.shiftLockEnabled = true
+	shiftLockToggle.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
+	shiftLockToggle.Text = "ON"
+	
+	player.DevEnableMouseLock = true
+	
+	if player.Character then
+		local humanoid = player.Character:FindFirstChild("Humanoid")
+		if humanoid then
+			humanoid.AutoRotate = false
+		end
+	end
+end
+
+local function disableShiftLock()
+	Settings.shiftLockEnabled = false
+	shiftLockToggle.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
+	shiftLockToggle.Text = "OFF"
+	
+	player.DevEnableMouseLock = false
+	
+	if player.Character then
+		local humanoid = player.Character:FindFirstChild("Humanoid")
+		if humanoid then
+			humanoid.AutoRotate = true
+		end
+	end
 end
 
 hopButton.InputBegan:Connect(function(input)
@@ -284,6 +365,14 @@ blinkToggle.MouseButton1Click:Connect(function()
 	end
 end)
 
+shiftLockToggle.MouseButton1Click:Connect(function()
+	if Settings.shiftLockEnabled then
+		disableShiftLock()
+	else
+		enableShiftLock()
+	end
+end)
+
 UserInputService.InputBegan:Connect(function(input, processed)
 	if processed then return end
 	
@@ -307,34 +396,46 @@ end)
 
 enableTouchControl()
 enableBlink()
+disableShiftLock()
 
 print("✅ Wall Hop System loaded!")
 print("⚙ - settings menu")
 print("HOP - camera rotate button (90°)")
 print("JUMP → 0.35s wait → HOP blinks green for 0.10s")
 
--- Отслеживаем прыжок
-local character = player.Character
-if character then
+-- Простая функция отслеживания прыжков
+local function setupJumpTracking()
+	local character = player.Character
+	if not character then return end
+	
 	local humanoid = character:FindFirstChild("Humanoid")
-	if humanoid then
-		humanoid.StateChanged:Connect(function(oldState, newState)
-			if newState == Enum.HumanoidStateType.Jumping then
-				coroutine.wrap(blinkAfterJump)()
-			end
-		end)
-	end
+	if not humanoid then return end
+	
+	humanoid.StateChanged:Connect(function(oldState, newState)
+		if newState == Enum.HumanoidStateType.Jumping then
+			-- Запускаем мигание в отдельной задаче
+			task.spawn(function()
+				blinkAfterJump()
+			end)
+		end
+	end)
 end
 
-player.CharacterAdded:Connect(function(newCharacter)
-	task.wait(1)
-	local humanoid = newCharacter:FindFirstChild("Humanoid")
-	if humanoid then
-		humanoid.StateChanged:Connect(function(oldState, newState)
-			if newState == Enum.HumanoidStateType.Jumping then
-				coroutine.wrap(blinkAfterJump)()
-			end
-		end)
+-- Настраиваем отслеживание
+if player.Character then
+	setupJumpTracking()
+end
+
+player.CharacterAdded:Connect(function(character)
+	task.wait(0.5)
+	setupJumpTracking()
+	
+	-- Применяем Shift Lock если включен
+	if Settings.shiftLockEnabled and character then
+		local humanoid = character:FindFirstChild("Humanoid")
+		if humanoid then
+			humanoid.AutoRotate = false
+		end
 	end
 end)
 
@@ -343,6 +444,29 @@ UserInputService.InputBegan:Connect(function(input, processed)
 	if processed then return end
 	
 	if input.KeyCode == Enum.KeyCode.Space then
-		coroutine.wrap(blinkAfterJump)()
+		task.spawn(blinkAfterJump)
+	end
+end)
+
+-- ФИНАЛЬНЫЙ ФИКС: Периодическая проверка цвета
+task.spawn(function()
+	while true do
+		task.wait(1) -- Проверяем каждую секунду
+		
+		-- Если кнопка зеленая больше 0.5 секунды - исправляем
+		if hopButton.BackgroundColor3 == Color3.fromRGB(0, 255, 0) then
+			-- Ждем еще 0.2 секунды на случай нормального мигания
+			task.wait(0.2)
+			
+			-- Если все еще зеленая - исправляем
+			if hopButton.BackgroundColor3 == Color3.fromRGB(0, 255, 0) then
+				if Settings.touchEnabled then
+					hopButton.BackgroundColor3 = Color3.fromRGB(255, 50, 50)
+				else
+					hopButton.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
+				end
+				print("🔄 Fixed stuck green button")
+			end
+		end
 	end
 end)
