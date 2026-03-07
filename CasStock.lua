@@ -6,7 +6,7 @@ local ConfigsList = {}
 
 local ConfigName = "Default"
 local MainFolderName = "DLKCasualStock"
-local formatFile = [[.json]]
+local formatFile = [[.DCFG]]
 
 local MinPrice = 0
 local MaxPrice = 1
